@@ -46,7 +46,7 @@ import javax.vecmath.Vector3f;
  */
 @RegisterSystem(value = RegisterMode.AUTHORITY)
 public class CharcoalPitAuthoritySystem extends BaseComponentSystem {
-    public static final String PRODUCE_CHARCOAL_ACTION_PREFIX = "Bronze:ProduceCharcoal|";
+    public static final String PRODUCE_CHARCOAL_ACTION_PREFIX = "CopperAndBronze:ProduceCharcoal|";
     @In
     private SlotBasedInventoryManager inventoryManager;
     @In

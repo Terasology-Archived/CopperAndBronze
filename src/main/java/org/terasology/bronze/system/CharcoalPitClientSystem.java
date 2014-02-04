@@ -46,7 +46,7 @@ public class CharcoalPitClientSystem extends BaseComponentSystem implements Upda
 
     @Override
     public void initialise() {
-        guiManager.registerWindow("Bronze:CharcoalPit", UICharcoalPit.class);
+        guiManager.registerWindow("CopperAndBronze:CharcoalPit", UICharcoalPit.class);
     }
 
     @Override
@@ -65,7 +65,7 @@ public class CharcoalPitClientSystem extends BaseComponentSystem implements Upda
 
     @ReceiveEvent
     public void openCharcoalPitWindow(OpenCharcoalPitRequest event, EntityRef charcoalPit) {
-        final UICharcoalPit uiCharcoalPit = (UICharcoalPit) guiManager.openWindow("Bronze:CharcoalPit");
+        final UICharcoalPit uiCharcoalPit = (UICharcoalPit) guiManager.openWindow("CopperAndBronze:CharcoalPit");
         uiCharcoalPit.setCharcoalPit(charcoalPit);
     }
 }

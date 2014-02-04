@@ -45,7 +45,7 @@ public class UICharcoalPit extends UIScreenInventory {
 
     public UICharcoalPit() {
         super();
-        setId("Bronze:CharcoalPit");
+        setId("CopperAndBronze:CharcoalPit");
         setModal(true);
     }
 
