@@ -1,0 +1,10 @@
+{
+    "Item": {
+        "icon": "CopperAndBronze:bronze.Charcoal",
+        "renderWithIcon": true,
+        "stackId": "Bronze:charcoal"
+    },
+    "DisplayName" : {
+        "name" : "Charcoal"
+    }
+}
