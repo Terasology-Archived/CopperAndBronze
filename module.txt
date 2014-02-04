@@ -2,7 +2,7 @@
     "id" : "CopperAndBronze",
     "version" : "0.1.0",
     "author" : "Marcin Sciesinski <marcins78@gmail.com>",
-    "displayName" : "CopperAndBronze",
+    "displayName" : "Throughout the Ages - II",
     "description" : "Improve your tools to copper, bronze and brass!",
     "dependencies" : [
             {

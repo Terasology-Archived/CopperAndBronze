@@ -36,7 +36,6 @@ import org.terasology.registry.In;
 import org.terasology.was.system.ToolTypeEntityFilter;
 import org.terasology.was.system.UseOnTopFilter;
 import org.terasology.workstation.system.CraftingStationRecipeRegistry;
-import org.terasology.workstation.system.recipe.SimpleWorkstationRecipe;
 import org.terasology.world.block.Block;
 import org.terasology.world.block.BlockManager;
 import org.terasology.world.block.BlockUri;
@@ -63,18 +62,6 @@ public class RegisterBronzeRecipes implements ComponentSystem {
         addWorkstationRecipes();
 
         addMultiblockRecipes();
-
-        addBasicMetalcraftingRecipes();
-    }
-
-    private void addBasicMetalcraftingRecipes() {
-        SimpleWorkstationRecipe chalcopyriteDustRecipe = new SimpleWorkstationRecipe();
-        chalcopyriteDustRecipe.addIngredient("CopperAndBronze:chalcopyriteCrystal", 1);
-        chalcopyriteDustRecipe.addRequiredTool("hammer", 1);
-        chalcopyriteDustRecipe.setItemResult("CopperAndBronze:ChalcopyriteCrystalDust", (byte) 1);
-
-        craftingStationRecipeRegistry.addCraftingStationRecipe(
-                "CopperAndBronze:BasicMetalcrafting", "CopperAndBronze:ChalcopyriteCrystalDust", chalcopyriteDustRecipe);
     }
 
     private void addWorkstationRecipes() {
