@@ -76,7 +76,7 @@ public class RegisterBronzeRecipes implements ComponentSystem {
     private void addMultiblockRecipes() {
         multiBlockRecipeRegistry.addMultiBlockFormItemRecipe(
                 new SurroundMultiBlockFormItemRecipe(
-                        new ToolTypeEntityFilter("hammer"), new BlockUriEntityFilter(new BlockUri("Core", "CobbleStone")),
+                        new ToolTypeEntityFilter("hammer"), new BlockUriEntityFilter(new BlockUri("Core", "Brick")),
                         new BlockUriEntityFilter(new BlockUri("Engine", "Air")), new AllowableCharcoalPitSize(),
                         new Filter<ActivateEvent>() {
                             @Override
@@ -95,7 +95,7 @@ public class RegisterBronzeRecipes implements ComponentSystem {
         @Override
         public Map<Vector3i, Block> getReplacementMap(Region3i region, Void designDetails) {
             BlockManager blockManager = CoreRegistry.get(BlockManager.class);
-            Block cobbleStone = blockManager.getBlock("Core:CobbleStone");
+            Block brickBlock = blockManager.getBlock("Core:Brick");
 
             Vector3i min = region.min();
             Vector3i max = region.max();
@@ -108,11 +108,11 @@ public class RegisterBronzeRecipes implements ComponentSystem {
             // Fill up the non-top layer blocks
             Region3i nonTopLayer = Region3i.createFromMinAndSize(min, new Vector3i(size.x, size.y - 1, size.z));
             for (Vector3i position : nonTopLayer) {
-                result.put(position, cobbleStone);
+                result.put(position, brickBlock);
             }
 
             // Fill up the internal blocks of top layer
-            Block halfBlock = blockManager.getBlock("Core:CobbleStone:Engine:HalfBlock");
+            Block halfBlock = blockManager.getBlock("Core:Brick:Engine:HalfBlock");
             Region3i topLayerInternal = Region3i.createFromMinAndSize(new Vector3i(min.x, max.y, min.z), new Vector3i(size.x, 1, size.z));
             for (Vector3i position : topLayerInternal) {
                 result.put(position, halfBlock);
@@ -120,22 +120,22 @@ public class RegisterBronzeRecipes implements ComponentSystem {
 
             // Top layer sides
             for (int x = min.x + 1; x < max.x; x++) {
-                result.put(new Vector3i(x, max.y, min.z), blockManager.getBlock("Core:CobbleStone:Engine:HalfSlope.FRONT"));
-                result.put(new Vector3i(x, max.y, max.z), blockManager.getBlock("Core:CobbleStone:Engine:HalfSlope.BACK"));
+                result.put(new Vector3i(x, max.y, min.z), blockManager.getBlock("Core:Brick:Engine:HalfSlope.FRONT"));
+                result.put(new Vector3i(x, max.y, max.z), blockManager.getBlock("Core:Brick:Engine:HalfSlope.BACK"));
             }
             for (int z = min.z + 1; z < max.z; z++) {
-                result.put(new Vector3i(min.x, max.y, z), blockManager.getBlock("Core:CobbleStone:Engine:HalfSlope.LEFT"));
-                result.put(new Vector3i(max.x, max.y, z), blockManager.getBlock("Core:CobbleStone:Engine:HalfSlope.RIGHT"));
+                result.put(new Vector3i(min.x, max.y, z), blockManager.getBlock("Core:Brick:Engine:HalfSlope.LEFT"));
+                result.put(new Vector3i(max.x, max.y, z), blockManager.getBlock("Core:Brick:Engine:HalfSlope.RIGHT"));
             }
 
             // Top layer corners
-            result.put(new Vector3i(min.x, max.y, min.z), blockManager.getBlock("Core:CobbleStone:Engine:HalfSlopeCorner.LEFT"));
-            result.put(new Vector3i(max.x, max.y, max.z), blockManager.getBlock("Core:CobbleStone:Engine:HalfSlopeCorner.RIGHT"));
-            result.put(new Vector3i(min.x, max.y, max.z), blockManager.getBlock("Core:CobbleStone:Engine:HalfSlopeCorner.BACK"));
-            result.put(new Vector3i(max.x, max.y, min.z), blockManager.getBlock("Core:CobbleStone:Engine:HalfSlopeCorner.FRONT"));
+            result.put(new Vector3i(min.x, max.y, min.z), blockManager.getBlock("Core:Brick:Engine:HalfSlopeCorner.LEFT"));
+            result.put(new Vector3i(max.x, max.y, max.z), blockManager.getBlock("Core:Brick:Engine:HalfSlopeCorner.RIGHT"));
+            result.put(new Vector3i(min.x, max.y, max.z), blockManager.getBlock("Core:Brick:Engine:HalfSlopeCorner.BACK"));
+            result.put(new Vector3i(max.x, max.y, min.z), blockManager.getBlock("Core:Brick:Engine:HalfSlopeCorner.FRONT"));
 
             // Chimney
-            result.put(new Vector3i(center.x, max.y, center.z), blockManager.getBlock("Core:CobbleStone:Engine:PillarBase"));
+            result.put(new Vector3i(center.x, max.y, center.z), blockManager.getBlock("Core:Brick:Engine:PillarBase"));
 
             return result;
         }
@@ -162,7 +162,7 @@ public class RegisterBronzeRecipes implements ComponentSystem {
             int cobbleStoneCount = 2 * (size.x + size.z - 2) * (size.y - 1) + (size.x - 2) * (size.z - 2);
 
             BlockDropGrammarComponent drop = new BlockDropGrammarComponent();
-            drop.blockDrops = Arrays.asList(cobbleStoneCount + "*Core:CobbleStone");
+            drop.blockDrops = Arrays.asList(cobbleStoneCount + "*Core:Brick");
             entity.addComponent(drop);
         }
     }
