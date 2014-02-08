@@ -72,7 +72,7 @@ public class CharcoalPitAuthoritySystem extends BaseComponentSystem {
             for (int i = 0; i < charcoalPit.inputSlotCount; i++) {
                 EntityRef itemInSlot = InventoryUtils.getItemAt(entity, i);
                 if (itemInSlot.exists()) {
-                    RemoveItemAction removeAction = new RemoveItemAction(itemInSlot, true);
+                    RemoveItemAction removeAction = new RemoveItemAction(entity, itemInSlot, true);
                     entity.send(removeAction);
                 }
             }
@@ -118,10 +118,13 @@ public class CharcoalPitAuthoritySystem extends BaseComponentSystem {
                     ItemComponent item = charcoalItem.getComponent(ItemComponent.class);
                     item.stackCount = (byte) toAdd;
                     charcoalItem.saveComponent(item);
-                    GiveItemAction giveAction = new GiveItemAction(charcoalItem, i);
-                    giveAction.setForce(true);
+                    GiveItemAction giveAction = new GiveItemAction(entity, charcoalItem, i);
                     entity.send(giveAction);
-                    count -= toAdd;
+                    if (!giveAction.isConsumed()) {
+                        charcoalItem.destroy();
+                    } else {
+                        count -= toAdd;
+                    }
                 }
                 if (count == 0) {
                     break;
