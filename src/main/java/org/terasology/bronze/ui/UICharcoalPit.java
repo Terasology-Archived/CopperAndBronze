@@ -20,7 +20,6 @@ import org.terasology.bronze.event.ProduceCharcoalRequest;
 import org.terasology.bronze.system.CharcoalPitUtils;
 import org.terasology.engine.Time;
 import org.terasology.entitySystem.entity.EntityRef;
-import org.terasology.logic.inventory.SlotBasedInventoryManager;
 import org.terasology.registry.CoreRegistry;
 import org.terasology.rendering.gui.framework.UIDisplayElement;
 import org.terasology.rendering.gui.framework.events.ClickListener;
@@ -99,11 +98,9 @@ public class UICharcoalPit extends UIScreenInventory {
             inputGrid.setVisible(true);
             outputGrid.setVisible(true);
 
-            SlotBasedInventoryManager inventoryManager = CoreRegistry.get(SlotBasedInventoryManager.class);
+            int logCount = CharcoalPitUtils.getLogCount(charcoalPitEntity);
 
-            int logCount = CharcoalPitUtils.getLogCount(inventoryManager, charcoalPitEntity);
-
-            processButton.setVisible(CharcoalPitUtils.canBurnCharcoal(inventoryManager, logCount, charcoalPitEntity));
+            processButton.setVisible(CharcoalPitUtils.canBurnCharcoal(logCount, charcoalPitEntity));
         }
     }
 }

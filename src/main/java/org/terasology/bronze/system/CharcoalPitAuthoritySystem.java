@@ -31,8 +31,10 @@ import org.terasology.logic.common.ActivateEvent;
 import org.terasology.logic.delay.AddDelayedActionEvent;
 import org.terasology.logic.delay.DelayedActionTriggeredEvent;
 import org.terasology.logic.inventory.InventoryComponent;
+import org.terasology.logic.inventory.InventoryUtils;
 import org.terasology.logic.inventory.ItemComponent;
-import org.terasology.logic.inventory.SlotBasedInventoryManager;
+import org.terasology.logic.inventory.action.GiveItemAction;
+import org.terasology.logic.inventory.action.RemoveItemAction;
 import org.terasology.logic.location.LocationComponent;
 import org.terasology.logic.particles.BlockParticleEffectComponent;
 import org.terasology.math.Vector3i;
@@ -47,8 +49,6 @@ import javax.vecmath.Vector3f;
 @RegisterSystem(value = RegisterMode.AUTHORITY)
 public class CharcoalPitAuthoritySystem extends BaseComponentSystem {
     public static final String PRODUCE_CHARCOAL_ACTION_PREFIX = "CopperAndBronze:ProduceCharcoal|";
-    @In
-    private SlotBasedInventoryManager inventoryManager;
     @In
     private Time time;
     @In
@@ -65,14 +65,15 @@ public class CharcoalPitAuthoritySystem extends BaseComponentSystem {
     public void startBurningCharcoal(ProduceCharcoalRequest event, EntityRef entity) {
         CharcoalPitComponent charcoalPit = entity.getComponent(CharcoalPitComponent.class);
 
-        int logCount = CharcoalPitUtils.getLogCount(inventoryManager, entity);
+        int logCount = CharcoalPitUtils.getLogCount(entity);
 
-        if (CharcoalPitUtils.canBurnCharcoal(inventoryManager, logCount, entity)) {
+        if (CharcoalPitUtils.canBurnCharcoal(logCount, entity)) {
             // Remove logs from inventory
             for (int i = 0; i < charcoalPit.inputSlotCount; i++) {
-                EntityRef itemInSlot = inventoryManager.getItemInSlot(entity, i);
+                EntityRef itemInSlot = InventoryUtils.getItemAt(entity, i);
                 if (itemInSlot.exists()) {
-                    inventoryManager.removeItem(entity, itemInSlot);
+                    RemoveItemAction removeAction = new RemoveItemAction(itemInSlot, true);
+                    entity.send(removeAction);
                 }
             }
 
@@ -110,14 +111,16 @@ public class CharcoalPitAuthoritySystem extends BaseComponentSystem {
 
             int count = Integer.parseInt(actionId.substring(PRODUCE_CHARCOAL_ACTION_PREFIX.length()));
             for (int i = charcoalPit.inputSlotCount; i < charcoalPit.inputSlotCount + charcoalPit.outputSlotCount; i++) {
-                EntityRef itemInSlot = inventoryManager.getItemInSlot(entity, i);
+                EntityRef itemInSlot = InventoryUtils.getItemAt(entity, i);
                 if (!itemInSlot.exists()) {
                     int toAdd = Math.min(count, 99);
                     EntityRef charcoalItem = entityManager.create("CopperAndBronze:Charcoal");
                     ItemComponent item = charcoalItem.getComponent(ItemComponent.class);
                     item.stackCount = (byte) toAdd;
                     charcoalItem.saveComponent(item);
-                    inventoryManager.putItemInSlot(entity, i, charcoalItem);
+                    GiveItemAction giveAction = new GiveItemAction(charcoalItem, i);
+                    giveAction.setForce(true);
+                    entity.send(giveAction);
                     count -= toAdd;
                 }
                 if (count == 0) {
