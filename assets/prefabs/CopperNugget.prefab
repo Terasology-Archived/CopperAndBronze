@@ -4,7 +4,10 @@
         "renderWithIcon": true,
         "stackId": "CopperAndBronze:CopperNugget"
     },
-    "DisplayName" : {
-        "name" : "Native Copper Nugger"
+    "DisplayName": {
+        "name": "Native Copper Nugger"
+    },
+    "CraftingStationIngredient": {
+        "type": "CopperAndBronze:copperNugget"
     }
 }
