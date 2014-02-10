@@ -51,14 +51,19 @@ public class HeatTriggeringSystem extends BaseComponentSystem implements UpdateS
             for (EntityRef entityRef : entityManager.getEntitiesWith(HeatProducerComponent.class)) {
                 HeatProducerComponent producer = entityRef.getComponent(HeatProducerComponent.class);
 
+                boolean changed = false;
                 Iterator<HeatProducerComponent.FuelSourceConsume> fuelConsumedIterator = producer.fuelConsumed.iterator();
                 while (fuelConsumedIterator.hasNext()) {
                     HeatProducerComponent.FuelSourceConsume fuelSourceConsume = fuelConsumedIterator.next();
                     if (HeatUtils.doCalculationForOneFuelSourceConsume(producer.heatStorageEfficiency, currentTime, fuelSourceConsume) < REMOVE_FUEL_THRESHOLD) {
                         fuelConsumedIterator.remove();
+                        changed = true;
                     } else {
                         break;
                     }
+                }
+                if (changed) {
+                    entityRef.saveComponent(producer);
                 }
             }
         }
