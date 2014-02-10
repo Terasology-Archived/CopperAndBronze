@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.terasology.bronze.heat;
+package org.terasology.heat;
 
 import org.terasology.engine.Time;
 import org.terasology.entitySystem.entity.EntityRef;

@@ -13,44 +13,30 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.terasology.bronze.heat.processParts;
+package org.terasology.heat.processParts;
 
-import org.terasology.bronze.heat.HeatProducerComponent;
-import org.terasology.engine.Time;
 import org.terasology.entitySystem.Component;
 import org.terasology.entitySystem.entity.EntityRef;
+import org.terasology.heat.HeatUtils;
 import org.terasology.machines.processParts.ProcessPart;
 import org.terasology.registry.CoreRegistry;
+import org.terasology.world.BlockEntityRegistry;
 
-public class HeatFuelingComponent implements Component, ProcessPart {
-    public long burnLength;
-    public float energyProvided;
+public class HeatInputComponent implements Component, ProcessPart {
+    public float heat;
 
     @Override
     public void resolve(EntityRef outputEntity) {
-        HeatProducerComponent heatProducer = outputEntity.getComponent(HeatProducerComponent.class);
-        if (heatProducer != null) {
-            long time = CoreRegistry.get(Time.class).getGameTimeInMs();
-
-            HeatProducerComponent.FuelSourceConsume consume = new HeatProducerComponent.FuelSourceConsume();
-            consume.startTime = time;
-            consume.burnLength = burnLength;
-            consume.energyProvided = energyProvided;
-
-            heatProducer.fuelConsumed.add(consume);
-
-            outputEntity.saveComponent(heatProducer);
-        }
     }
 
     @Override
     public boolean validate(EntityRef entity) {
-        return true;
+        return HeatUtils.calculateHeatForConsumer(entity, CoreRegistry.get(BlockEntityRegistry.class)) >= heat;
     }
 
     @Override
     public boolean isOutput() {
-        return true;
+        return false;
     }
 
     @Override
