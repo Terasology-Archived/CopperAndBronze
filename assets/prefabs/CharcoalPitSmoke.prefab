@@ -1,7 +1,7 @@
 {
     "blockParticleEffect": {
         "spawnCount": 5,
-        "initialVelocityRange": [0, 0, 0],
+        "initialVelocityRange": [0.2, 0, 0.2],
         "spawnRange": [0, 0, 0],
         "destroyEntityOnCompletion": false,
         "minSize": 1,
