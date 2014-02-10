@@ -3,7 +3,7 @@
         "stationType": "CopperAndBronze:BasicMetalcrafting",
         "recipeId": "CopperAndBronze:ChalcopyriteCrystalDust",
 
-        "recipeComponents": ["1*CopperAndBronze:ChalcopyriteCrystal"],
+        "recipeComponents": ["1*CopperAndBronze:chalcopyriteOreCrystal"],
         "recipeTools": ["1*hammer"],
 
         "itemResult": "1*CopperAndBronze:ChalcopyriteCrystalDust"

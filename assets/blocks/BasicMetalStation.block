@@ -6,9 +6,9 @@
     "categories": ["stone"],
 
     "tiles": {
-        "top": "CopperAndBronze:BasicMetalStation",
-        "bottom": "CopperAndBronze:BasicMetalStation",
-        "sides": "CopperAndBronze:BasicMetalStation"
+        "top": "CopperAndBronze:BasicMetalStationTop",
+        "bottom": "CopperAndBronze:BasicMetalStationBottom",
+        "sides": "CopperAndBronze:BasicMetalStationSides"
     }
 
 }
