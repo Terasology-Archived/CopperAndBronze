@@ -25,6 +25,8 @@ import org.terasology.entitySystem.systems.UpdateSubscriberSystem;
 import org.terasology.machines.events.ProcessingMachineChanged;
 import org.terasology.registry.In;
 
+import java.util.Iterator;
+
 @RegisterSystem(value = RegisterMode.AUTHORITY)
 public class HeatTriggeringSystem extends BaseComponentSystem implements UpdateSubscriberSystem {
     @In
@@ -32,6 +34,7 @@ public class HeatTriggeringSystem extends BaseComponentSystem implements UpdateS
     @In
     private Time time;
 
+    private static final float REMOVE_FUEL_THRESHOLD = 1f;
     private static final long TRIGGER_INTERVAL = 100;
     private long lastChecked;
 
@@ -43,6 +46,20 @@ public class HeatTriggeringSystem extends BaseComponentSystem implements UpdateS
 
             for (EntityRef entityRef : entityManager.getEntitiesWith(HeatConsumerComponent.class)) {
                 entityRef.send(new ProcessingMachineChanged());
+            }
+
+            for (EntityRef entityRef : entityManager.getEntitiesWith(HeatProducerComponent.class)) {
+                HeatProducerComponent producer = entityRef.getComponent(HeatProducerComponent.class);
+
+                Iterator<HeatProducerComponent.FuelSourceConsume> fuelConsumedIterator = producer.fuelConsumed.iterator();
+                while (fuelConsumedIterator.hasNext()) {
+                    HeatProducerComponent.FuelSourceConsume fuelSourceConsume = fuelConsumedIterator.next();
+                    if (HeatUtils.doCalculationForOneFuelSourceConsume(producer.heatStorageEfficiency, currentTime, fuelSourceConsume) < REMOVE_FUEL_THRESHOLD) {
+                        fuelConsumedIterator.remove();
+                    } else {
+                        break;
+                    }
+                }
             }
         }
     }
