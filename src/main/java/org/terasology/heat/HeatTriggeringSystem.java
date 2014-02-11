@@ -31,7 +31,7 @@ import org.terasology.registry.In;
 import org.terasology.world.BlockEntityRegistry;
 
 import java.util.Iterator;
-import java.util.Set;
+import java.util.Map;
 
 @RegisterSystem(value = RegisterMode.AUTHORITY)
 public class HeatTriggeringSystem extends BaseComponentSystem implements UpdateSubscriberSystem {
@@ -89,23 +89,16 @@ public class HeatTriggeringSystem extends BaseComponentSystem implements UpdateS
 
         float heat = HeatUtils.calculateHeatForProducer(entity);
 
-        HeatProducerComponent component = entity.getComponent(HeatProducerComponent.class);
-        Set<Side> heatDirections = component.heatDirections;
-        for (Vector3i producerBlock : HeatUtils.getEntityBlocks(entity)) {
-            for (Side heatDirection : heatDirections) {
-                Vector3i heatedBlock = producerBlock.clone();
-                heatedBlock.add(heatDirection.getVector3i());
+        for (Map.Entry<Vector3i, Side> heatedBlock : HeatUtils.getPotentialHeatedBlocksForProducer(entity).entrySet()) {
+            EntityRef potentialConsumer = blockEntityRegistry.getEntityAt(heatedBlock.getKey());
+            HeatConsumerComponent consumer = potentialConsumer.getComponent(HeatConsumerComponent.class);
+            if (consumer != null && consumer.heatDirections.contains(heatedBlock.getValue().reverse())) {
+                HeatConsumerComponent.ResidualHeat residualHeat = new HeatConsumerComponent.ResidualHeat();
+                residualHeat.time = gameTime;
+                residualHeat.baseHeat = heat;
+                consumer.residualHeat.add(residualHeat);
 
-                EntityRef potentialConsumer = blockEntityRegistry.getEntityAt(heatedBlock);
-                HeatConsumerComponent consumer = potentialConsumer.getComponent(HeatConsumerComponent.class);
-                if (consumer != null) {
-                    HeatConsumerComponent.ResidualHeat residualHeat = new HeatConsumerComponent.ResidualHeat();
-                    residualHeat.time = gameTime;
-                    residualHeat.baseHeat = heat;
-                    consumer.residualHeat.add(residualHeat);
-
-                    potentialConsumer.saveComponent(consumer);
-                }
+                potentialConsumer.saveComponent(consumer);
             }
         }
     }

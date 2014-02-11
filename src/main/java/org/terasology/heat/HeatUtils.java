@@ -25,6 +25,10 @@ import org.terasology.world.BlockEntityRegistry;
 import org.terasology.world.block.BlockComponent;
 import org.terasology.world.block.regions.BlockRegionComponent;
 
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.Map;
+
 public final class HeatUtils {
     private HeatUtils() {
 
@@ -58,31 +62,24 @@ public final class HeatUtils {
         return heat;
     }
 
-    public static float calculateHeatForConsumer(EntityRef entityRef, BlockEntityRegistry blockEntityRegistry) {
-        long gameTime = CoreRegistry.get(Time.class).getGameTimeInMs();
-
-        HeatConsumerComponent heatConsumer = entityRef.getComponent(HeatConsumerComponent.class);
+    public static float calculateHeatForConsumer(EntityRef entity, BlockEntityRegistry blockEntityRegistry) {
+        HeatConsumerComponent heatConsumer = entity.getComponent(HeatConsumerComponent.class);
         if (heatConsumer == null) {
-            return -1;
+            return 0;
         }
 
         float result = 0;
 
-        Region3i entityBlocks = getEntityBlocks(entityRef);
+        for (Map.Entry<Vector3i, Side> heaterBlock : getPotentialHeatSourceBlocksForConsumer(entity).entrySet()) {
+            EntityRef potentialHeatProducer = blockEntityRegistry.getEntityAt(heaterBlock.getKey());
+            HeatProducerComponent heatProducerComponent = potentialHeatProducer.getComponent(HeatProducerComponent.class);
 
-        for (Vector3i entityBlock : entityBlocks) {
-            for (Side heatDirection : heatConsumer.heatDirections) {
-                Vector3i heatProducerPosition = entityBlock.clone();
-                heatProducerPosition.add(heatDirection.getVector3i());
-
-                EntityRef potentialHeatProducer = blockEntityRegistry.getEntityAt(heatProducerPosition);
-                HeatProducerComponent heatProducerComponent = potentialHeatProducer.getComponent(HeatProducerComponent.class);
-
-                if (heatProducerComponent.heatDirections.contains(heatDirection.reverse())) {
-                    result += calculateHeatForProducer(potentialHeatProducer);
-                }
+            if (heatProducerComponent != null && heatProducerComponent.heatDirections.contains(heaterBlock.getValue().reverse())) {
+                result += calculateHeatForProducer(potentialHeatProducer);
             }
         }
+
+        long gameTime = CoreRegistry.get(Time.class).getGameTimeInMs();
 
         for (HeatConsumerComponent.ResidualHeat residualHeat : heatConsumer.residualHeat) {
             float timeSinceHeatWasEstablished = (gameTime - residualHeat.time) / 1000f;
@@ -100,5 +97,51 @@ public final class HeatUtils {
         }
         BlockRegionComponent blockRegionComponent = entityRef.getComponent(BlockRegionComponent.class);
         return blockRegionComponent.region;
+    }
+
+    public static Map<Vector3i, Side> getPotentialHeatSourceBlocksForConsumer(EntityRef consumer) {
+        HeatConsumerComponent consumerComp = consumer.getComponent(HeatConsumerComponent.class);
+        if (consumerComp == null) {
+            return Collections.emptyMap();
+        }
+
+        Region3i entityBlocks = getEntityBlocks(consumer);
+
+        Map<Vector3i, Side> result = new HashMap<>();
+
+        for (Vector3i entityBlock : entityBlocks) {
+            for (Side heatDirection : consumerComp.heatDirections) {
+                Vector3i heatedBlock = entityBlock.clone();
+                heatedBlock.add(heatDirection.getVector3i());
+                if (!entityBlocks.encompasses(heatedBlock)) {
+                    result.put(heatedBlock, heatDirection);
+                }
+            }
+        }
+
+        return result;
+    }
+
+    public static Map<Vector3i, Side> getPotentialHeatedBlocksForProducer(EntityRef producer) {
+        HeatProducerComponent producerComp = producer.getComponent(HeatProducerComponent.class);
+        if (producerComp == null) {
+            return Collections.emptyMap();
+        }
+
+        Region3i entityBlocks = getEntityBlocks(producer);
+
+        Map<Vector3i, Side> result = new HashMap<>();
+
+        for (Vector3i entityBlock : entityBlocks) {
+            for (Side heatDirection : producerComp.heatDirections) {
+                Vector3i heatedBlock = entityBlock.clone();
+                heatedBlock.add(heatDirection.getVector3i());
+                if (!entityBlocks.encompasses(heatedBlock)) {
+                    result.put(heatedBlock, heatDirection);
+                }
+            }
+        }
+
+        return result;
     }
 }
