@@ -2,6 +2,9 @@
     "BlockDropGrammar": {
         "blockDrops": "2*Core:CobbleStone"
     },
+    "Workstation": {
+        "uiPrefab": "WoodAndStone:CraftInStation"
+    },
     "CraftingStation": {
         "type": "CopperAndBronze:BasicMetalcrafting",
         "workstationUITexture": "CopperAndBronze:BasicMetalworking",

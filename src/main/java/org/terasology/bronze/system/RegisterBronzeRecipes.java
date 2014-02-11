@@ -35,7 +35,7 @@ import org.terasology.registry.CoreRegistry;
 import org.terasology.registry.In;
 import org.terasology.was.system.ToolTypeEntityFilter;
 import org.terasology.was.system.UseOnTopFilter;
-import org.terasology.workstation.system.CraftingStationRecipeRegistry;
+import org.terasology.workstation.system.WorkstationRegistry;
 import org.terasology.world.block.Block;
 import org.terasology.world.block.BlockManager;
 import org.terasology.world.block.BlockUri;
@@ -51,7 +51,7 @@ import java.util.Map;
 @RegisterSystem
 public class RegisterBronzeRecipes implements ComponentSystem {
     @In
-    private CraftingStationRecipeRegistry craftingStationRecipeRegistry;
+    private WorkstationRegistry craftingStationRecipeRegistry;
     @In
     private MultiBlockFormRecipeRegistry multiBlockRecipeRegistry;
     @In
