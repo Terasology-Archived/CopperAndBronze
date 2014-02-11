@@ -43,6 +43,7 @@ public class HeatTriggeringSystem extends BaseComponentSystem implements UpdateS
     private Time time;
 
     private static final float REMOVE_FUEL_THRESHOLD = 1f;
+    private static final float REMOVE_RESIDUAL_HEAT_THRESHOLD = 1f;
     private static final long TRIGGER_INTERVAL = 100;
     private long lastChecked;
 
@@ -52,12 +53,28 @@ public class HeatTriggeringSystem extends BaseComponentSystem implements UpdateS
         if (currentTime > lastChecked + TRIGGER_INTERVAL) {
             lastChecked = currentTime;
 
-            for (EntityRef entityRef : entityManager.getEntitiesWith(HeatConsumerComponent.class)) {
-                entityRef.send(new ProcessingMachineChanged());
+            for (EntityRef entity : entityManager.getEntitiesWith(HeatConsumerComponent.class)) {
+                HeatConsumerComponent heatConsumer = entity.getComponent(HeatConsumerComponent.class);
+                Iterator<HeatConsumerComponent.ResidualHeat> residualHeatIterator = heatConsumer.residualHeat.iterator();
+                boolean changed = false;
+                while (residualHeatIterator.hasNext()) {
+                    HeatConsumerComponent.ResidualHeat residualHeat = residualHeatIterator.next();
+                    if (HeatUtils.calculateResidualHeatValue(currentTime, residualHeat) < REMOVE_RESIDUAL_HEAT_THRESHOLD) {
+                        residualHeatIterator.remove();
+                        changed = true;
+                    } else {
+                        break;
+                    }
+                }
+                if (changed) {
+                    entity.saveComponent(heatConsumer);
+                }
+
+                entity.send(new ProcessingMachineChanged());
             }
 
-            for (EntityRef entityRef : entityManager.getEntitiesWith(HeatProducerComponent.class)) {
-                HeatProducerComponent producer = entityRef.getComponent(HeatProducerComponent.class);
+            for (EntityRef entity : entityManager.getEntitiesWith(HeatProducerComponent.class)) {
+                HeatProducerComponent producer = entity.getComponent(HeatProducerComponent.class);
 
                 boolean changed = false;
                 Iterator<HeatProducerComponent.FuelSourceConsume> fuelConsumedIterator = producer.fuelConsumed.iterator();
@@ -71,7 +88,7 @@ public class HeatTriggeringSystem extends BaseComponentSystem implements UpdateS
                     }
                 }
                 if (changed) {
-                    entityRef.saveComponent(producer);
+                    entity.saveComponent(producer);
                 }
             }
         }

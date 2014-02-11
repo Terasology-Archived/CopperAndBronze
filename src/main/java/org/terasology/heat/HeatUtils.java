@@ -82,11 +82,16 @@ public final class HeatUtils {
         long gameTime = CoreRegistry.get(Time.class).getGameTimeInMs();
 
         for (HeatConsumerComponent.ResidualHeat residualHeat : heatConsumer.residualHeat) {
-            float timeSinceHeatWasEstablished = (gameTime - residualHeat.time) / 1000f;
-            result += residualHeat.baseHeat * Math.pow(Math.E, -1 * timeSinceHeatWasEstablished);
+            double heat = calculateResidualHeatValue(gameTime, residualHeat);
+            result += heat;
         }
 
         return result * heatConsumer.heatConsumptionEfficiency;
+    }
+
+    public static double calculateResidualHeatValue(long gameTime, HeatConsumerComponent.ResidualHeat residualHeat) {
+        float timeSinceHeatWasEstablished = (gameTime - residualHeat.time) / 1000f;
+        return residualHeat.baseHeat * Math.pow(Math.E, -1 * timeSinceHeatWasEstablished);
     }
 
     public static Region3i getEntityBlocks(EntityRef entityRef) {
