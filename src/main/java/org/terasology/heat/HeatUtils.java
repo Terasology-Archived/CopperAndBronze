@@ -32,23 +32,22 @@ public final class HeatUtils {
 
     public static float doCalculationForOneFuelSourceConsume(float heatStorageEfficiency, long gameTime,
                                                              HeatProducerComponent.FuelSourceConsume fuelSourceConsume) {
-        float secondsSinceStart = (gameTime - fuelSourceConsume.startTime) / 1000f;
         float secondsSinceEnd = (gameTime - fuelSourceConsume.startTime - fuelSourceConsume.burnLength) / 1000f;
 
         if (secondsSinceEnd > 0) {
-            // Finished burning
-            return fuelSourceConsume.energyProvided * (fuelSourceConsume.burnLength / secondsSinceEnd) * heatStorageEfficiency;
+            // Finished burning - utilise formula for continuous compounding to calculate cumulative loss of heat - (e^(-(1/efficiency)*time))
+            return fuelSourceConsume.energyProvided * (float) Math.pow(Math.E, -(1 / heatStorageEfficiency) * secondsSinceEnd);
         } else {
-            return fuelSourceConsume.energyProvided * secondsSinceStart / fuelSourceConsume.burnLength;
+            return fuelSourceConsume.energyProvided * (gameTime - fuelSourceConsume.startTime) / 1000f / fuelSourceConsume.burnLength;
         }
     }
 
-    public static int calculateHeatForProducer(EntityRef entityRef) {
+    public static float calculateHeatForProducer(EntityRef entityRef) {
         long gameTime = CoreRegistry.get(Time.class).getGameTimeInMs();
 
         HeatProducerComponent producer = entityRef.getComponent(HeatProducerComponent.class);
         if (producer == null) {
-            return -1;
+            return 0;
         }
 
         float heat = 0;
@@ -56,16 +55,18 @@ public final class HeatUtils {
             heat += doCalculationForOneFuelSourceConsume(producer.heatStorageEfficiency, gameTime, fuelSourceConsume);
         }
 
-        return (int) heat;
+        return heat;
     }
 
-    public static int calculateHeatForConsumer(EntityRef entityRef, BlockEntityRegistry blockEntityRegistry) {
+    public static float calculateHeatForConsumer(EntityRef entityRef, BlockEntityRegistry blockEntityRegistry) {
+        long gameTime = CoreRegistry.get(Time.class).getGameTimeInMs();
+
         HeatConsumerComponent heatConsumer = entityRef.getComponent(HeatConsumerComponent.class);
         if (heatConsumer == null) {
             return -1;
         }
 
-        int result = 0;
+        float result = 0;
 
         Region3i entityBlocks = getEntityBlocks(entityRef);
 
@@ -78,18 +79,20 @@ public final class HeatUtils {
                 HeatProducerComponent heatProducerComponent = potentialHeatProducer.getComponent(HeatProducerComponent.class);
 
                 if (heatProducerComponent.heatDirections.contains(heatDirection.reverse())) {
-                    int producerResult = calculateHeatForProducer(potentialHeatProducer);
-                    if (producerResult > -1) {
-                        result += producerResult * heatConsumer.heatConsumptionEfficiency;
-                    }
+                    result += calculateHeatForProducer(potentialHeatProducer);
                 }
             }
         }
 
-        return result;
+        for (HeatConsumerComponent.ResidualHeat residualHeat : heatConsumer.residualHeat) {
+            float timeSinceHeatWasEstablished = (gameTime - residualHeat.time) / 1000f;
+            result += residualHeat.baseHeat * Math.pow(Math.E, -1 * timeSinceHeatWasEstablished);
+        }
+
+        return result * heatConsumer.heatConsumptionEfficiency;
     }
 
-    private static Region3i getEntityBlocks(EntityRef entityRef) {
+    public static Region3i getEntityBlocks(EntityRef entityRef) {
         BlockComponent blockComponent = entityRef.getComponent(BlockComponent.class);
         if (blockComponent != null) {
             Vector3i blockPosition = blockComponent.getPosition();

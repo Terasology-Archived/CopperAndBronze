@@ -18,17 +18,25 @@ package org.terasology.heat;
 import org.terasology.engine.Time;
 import org.terasology.entitySystem.entity.EntityManager;
 import org.terasology.entitySystem.entity.EntityRef;
+import org.terasology.entitySystem.entity.lifecycleEvents.BeforeRemoveComponent;
+import org.terasology.entitySystem.event.ReceiveEvent;
 import org.terasology.entitySystem.systems.BaseComponentSystem;
 import org.terasology.entitySystem.systems.RegisterMode;
 import org.terasology.entitySystem.systems.RegisterSystem;
 import org.terasology.entitySystem.systems.UpdateSubscriberSystem;
 import org.terasology.machines.events.ProcessingMachineChanged;
+import org.terasology.math.Side;
+import org.terasology.math.Vector3i;
 import org.terasology.registry.In;
+import org.terasology.world.BlockEntityRegistry;
 
 import java.util.Iterator;
+import java.util.Set;
 
 @RegisterSystem(value = RegisterMode.AUTHORITY)
 public class HeatTriggeringSystem extends BaseComponentSystem implements UpdateSubscriberSystem {
+    @In
+    private BlockEntityRegistry blockEntityRegistry;
     @In
     private EntityManager entityManager;
     @In
@@ -64,6 +72,39 @@ public class HeatTriggeringSystem extends BaseComponentSystem implements UpdateS
                 }
                 if (changed) {
                     entityRef.saveComponent(producer);
+                }
+            }
+        }
+    }
+
+    /**
+     * Store residual heat from removed producers into consumers.
+     *
+     * @param event
+     * @param entity
+     */
+    @ReceiveEvent(components = {HeatProducerComponent.class})
+    public void beforeProducerRemoved(BeforeRemoveComponent event, EntityRef entity) {
+        long gameTime = time.getGameTimeInMs();
+
+        float heat = HeatUtils.calculateHeatForProducer(entity);
+
+        HeatProducerComponent component = entity.getComponent(HeatProducerComponent.class);
+        Set<Side> heatDirections = component.heatDirections;
+        for (Vector3i producerBlock : HeatUtils.getEntityBlocks(entity)) {
+            for (Side heatDirection : heatDirections) {
+                Vector3i heatedBlock = producerBlock.clone();
+                heatedBlock.add(heatDirection.getVector3i());
+
+                EntityRef potentialConsumer = blockEntityRegistry.getEntityAt(heatedBlock);
+                HeatConsumerComponent consumer = potentialConsumer.getComponent(HeatConsumerComponent.class);
+                if (consumer != null) {
+                    HeatConsumerComponent.ResidualHeat residualHeat = new HeatConsumerComponent.ResidualHeat();
+                    residualHeat.time = gameTime;
+                    residualHeat.baseHeat = heat;
+                    consumer.residualHeat.add(residualHeat);
+
+                    potentialConsumer.saveComponent(consumer);
                 }
             }
         }

@@ -17,10 +17,24 @@ package org.terasology.heat;
 
 import org.terasology.entitySystem.Component;
 import org.terasology.math.Side;
+import org.terasology.network.Replicate;
+import org.terasology.reflection.MappedContainer;
+import org.terasology.world.block.ForceBlockActive;
 
+import java.util.LinkedList;
+import java.util.List;
 import java.util.Set;
 
+@ForceBlockActive
+@Replicate
 public class HeatConsumerComponent implements Component {
     public Set<Side> heatDirections;
     public float heatConsumptionEfficiency;
+    public List<ResidualHeat> residualHeat = new LinkedList<>();
+
+    @MappedContainer
+    public static class ResidualHeat {
+        public long time;
+        public float baseHeat;
+    }
 }
