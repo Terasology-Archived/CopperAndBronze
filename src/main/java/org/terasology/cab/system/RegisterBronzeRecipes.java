@@ -21,7 +21,7 @@ import org.terasology.cab.component.CharcoalPitComponent;
 import org.terasology.core.logic.blockDropGrammar.BlockDropGrammarComponent;
 import org.terasology.crafting.system.CraftingWorkstationProcessFactory;
 import org.terasology.entitySystem.entity.EntityRef;
-import org.terasology.entitySystem.systems.ComponentSystem;
+import org.terasology.entitySystem.systems.BaseComponentSystem;
 import org.terasology.entitySystem.systems.RegisterSystem;
 import org.terasology.logic.common.ActivateEvent;
 import org.terasology.logic.inventory.InventoryComponent;
@@ -51,7 +51,7 @@ import java.util.Map;
  * @author Marcin Sciesinski <marcins78@gmail.com>
  */
 @RegisterSystem
-public class RegisterBronzeRecipes implements ComponentSystem {
+public class RegisterBronzeRecipes extends BaseComponentSystem {
     @In
     private WorkstationRegistry workstationRegistry;
     @In
@@ -89,10 +89,6 @@ public class RegisterBronzeRecipes implements ComponentSystem {
                             }
                         }, "CopperAndBronze:CharcoalPit", new CharcoalPitCallback())
         );
-    }
-
-    @Override
-    public void shutdown() {
     }
 
     private final static class CharcoalPitCallback implements MultiBlockCallback<Void> {

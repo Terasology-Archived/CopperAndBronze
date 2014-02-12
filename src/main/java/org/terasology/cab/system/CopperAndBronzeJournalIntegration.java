@@ -19,7 +19,7 @@ import org.terasology.asset.Assets;
 import org.terasology.crafting.component.CraftingStationIngredientComponent;
 import org.terasology.entitySystem.entity.EntityRef;
 import org.terasology.entitySystem.event.ReceiveEvent;
-import org.terasology.entitySystem.systems.ComponentSystem;
+import org.terasology.entitySystem.systems.BaseComponentSystem;
 import org.terasology.entitySystem.systems.RegisterSystem;
 import org.terasology.journal.DiscoveredNewJournalEntry;
 import org.terasology.journal.JournalManager;
@@ -32,7 +32,7 @@ import org.terasology.registry.In;
  * @author Marcin Sciesinski <marcins78@gmail.com>
  */
 @RegisterSystem
-public class CopperAndBronzeJournalIntegration implements ComponentSystem {
+public class CopperAndBronzeJournalIntegration extends BaseComponentSystem {
     @In
     private JournalManager journalManager;
 
@@ -64,10 +64,6 @@ public class CopperAndBronzeJournalIntegration implements ComponentSystem {
 
         journalManager.registerJournalChapter(chapterId, Assets.getTexture("CopperAndBronze:CopperAndBronzeJournal"), "Copper and Bronze",
                 chapterHandler);
-    }
-
-    @Override
-    public void shutdown() {
     }
 
     @ReceiveEvent(components = {CharacterComponent.class})
