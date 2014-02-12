@@ -13,11 +13,13 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.terasology.bronze.system;
+package org.terasology.cab.system;
 
 import org.terasology.anotherWorld.util.Filter;
-import org.terasology.bronze.component.CharcoalPitComponent;
+import org.terasology.cab.CopperAndBronze;
+import org.terasology.cab.component.CharcoalPitComponent;
 import org.terasology.core.logic.blockDropGrammar.BlockDropGrammarComponent;
+import org.terasology.crafting.system.CraftingWorkstationProcessFactory;
 import org.terasology.entitySystem.entity.EntityRef;
 import org.terasology.entitySystem.systems.ComponentSystem;
 import org.terasology.entitySystem.systems.RegisterSystem;
@@ -51,7 +53,7 @@ import java.util.Map;
 @RegisterSystem
 public class RegisterBronzeRecipes implements ComponentSystem {
     @In
-    private WorkstationRegistry craftingStationRecipeRegistry;
+    private WorkstationRegistry workstationRegistry;
     @In
     private MultiBlockFormRecipeRegistry multiBlockRecipeRegistry;
     @In
@@ -59,6 +61,8 @@ public class RegisterBronzeRecipes implements ComponentSystem {
 
     @Override
     public void initialise() {
+        workstationRegistry.registerProcessFactory(CopperAndBronze.BASIC_METALCRAFTING_PROCESS_TYPE, new CraftingWorkstationProcessFactory());
+
         addWorkstationRecipes();
 
         addMultiblockRecipes();

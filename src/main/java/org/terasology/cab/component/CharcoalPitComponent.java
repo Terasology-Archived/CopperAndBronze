@@ -13,12 +13,17 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.terasology.bronze.event;
+package org.terasology.cab.component;
 
-import org.terasology.network.NetworkEvent;
+import org.terasology.entitySystem.Component;
 
 /**
  * @author Marcin Sciesinski <marcins78@gmail.com>
  */
-public class OpenCharcoalPitRequest extends NetworkEvent {
+public class CharcoalPitComponent implements Component {
+    public long burnFinishWorldTime;
+    public int minimumLogCount;
+    public int maximumLogCount;
+    public int inputSlotCount;
+    public int outputSlotCount;
 }

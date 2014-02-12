@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.terasology.bronze.system;
+package org.terasology.cab.system;
 
 import org.terasology.asset.Assets;
 import org.terasology.crafting.component.CraftingStationIngredientComponent;

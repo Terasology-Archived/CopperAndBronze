@@ -1,6 +1,8 @@
 {
+    "ProcessDefinition": {
+        "processType": "WoodAndStone:BasicMetalcrafting"
+    },
     "CraftingStationRecipe": {
-        "stationType": "CopperAndBronze:BasicMetalcrafting",
         "recipeId": "Materials|CopperAndBronze:ChalcopyriteCrystalDust",
 
         "recipeComponents": ["1*CopperAndBronze:chalcopyriteOreCrystal"],

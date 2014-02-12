@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.terasology.bronze.generator;
+package org.terasology.cab.generator;
 
 import org.terasology.anotherWorld.decorator.ore.OreDefinition;
 import org.terasology.anotherWorld.decorator.structure.PocketStructureDefinition;
@@ -27,15 +27,15 @@ import org.terasology.world.generator.plugin.RegisterPlugin;
  * @author Marcin Sciesinski <marcins78@gmail.com>
  */
 @RegisterPlugin
-public class CoalGeneration extends PocketStructureDefinition implements OreDefinition {
-    public CoalGeneration() {
-        super(new UniformPocketBlockProvider(CoreRegistry.get(BlockManager.class).getBlock("CopperAndBronze:CoalOre")),
-                new PDist(0.9f, 0.15f), new PDist(4f, 1f), new PDist(2f, 1f), new PDist(100f, 50f), new PDist(0f, 0.35f),
+public class NativeCopperGeneration extends PocketStructureDefinition implements OreDefinition {
+    public NativeCopperGeneration() {
+        super(new UniformPocketBlockProvider(CoreRegistry.get(BlockManager.class).getBlock("CopperAndBronze:NativeCopper")),
+                new PDist(0.3f, 0.08f), new PDist(3f, 1f), new PDist(2f, 0.5f), new PDist(80f, 10f), new PDist(0f, 0.35f),
                 new PDist(1f, 0f), new PDist(0.7f, 0.1f), new PDist(0.2f, 0f), new PDist(0f, 0f));
     }
 
     @Override
     public String getOreId() {
-        return "CopperAndBronze:CoalOre";
+        return "CopperAndBronze:NativeCopper";
     }
 }

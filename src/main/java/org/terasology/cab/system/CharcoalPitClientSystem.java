@@ -13,11 +13,11 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.terasology.bronze.system;
+package org.terasology.cab.system;
 
-import org.terasology.bronze.component.CharcoalPitComponent;
-import org.terasology.bronze.event.OpenCharcoalPitRequest;
-import org.terasology.bronze.ui.UICharcoalPit;
+import org.terasology.cab.component.CharcoalPitComponent;
+import org.terasology.cab.event.OpenCharcoalPitRequest;
+import org.terasology.cab.ui.UICharcoalPit;
 import org.terasology.engine.Time;
 import org.terasology.entitySystem.entity.EntityManager;
 import org.terasology.entitySystem.entity.EntityRef;

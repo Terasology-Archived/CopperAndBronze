@@ -13,14 +13,12 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.terasology.bronze.event;
+package org.terasology.cab.event;
 
-import org.terasology.entitySystem.event.Event;
-import org.terasology.network.ServerEvent;
+import org.terasology.network.NetworkEvent;
 
 /**
  * @author Marcin Sciesinski <marcins78@gmail.com>
  */
-@ServerEvent
-public class ProduceCharcoalRequest implements Event {
+public class OpenCharcoalPitRequest extends NetworkEvent {
 }

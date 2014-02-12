@@ -13,9 +13,9 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.terasology.bronze.system;
+package org.terasology.cab.system;
 
-import org.terasology.bronze.component.CharcoalPitComponent;
+import org.terasology.cab.component.CharcoalPitComponent;
 import org.terasology.crafting.component.CraftingStationIngredientComponent;
 import org.terasology.entitySystem.entity.EntityRef;
 import org.terasology.logic.inventory.InventoryUtils;

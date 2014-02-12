@@ -3,7 +3,8 @@
         "blockDrops": "2*Core:CobbleStone"
     },
     "Workstation": {
-        "uiPrefab": "WoodAndStone:CraftInStation"
+        "uiPrefab": "WoodAndStone:CraftInStation",
+        "supportedProcessTypes": ["WoodAndStone:BasicMetalcrafting", "Crafting:UpgradeCraftingWorkstation"]
     },
     "CraftingStation": {
         "type": "CopperAndBronze:BasicMetalcrafting",
