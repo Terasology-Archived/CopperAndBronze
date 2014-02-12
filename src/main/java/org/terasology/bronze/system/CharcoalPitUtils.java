@@ -16,10 +16,10 @@
 package org.terasology.bronze.system;
 
 import org.terasology.bronze.component.CharcoalPitComponent;
+import org.terasology.crafting.component.CraftingStationIngredientComponent;
 import org.terasology.entitySystem.entity.EntityRef;
 import org.terasology.logic.inventory.InventoryUtils;
 import org.terasology.logic.inventory.ItemComponent;
-import org.terasology.workstation.component.CraftingStationIngredientComponent;
 
 public final class CharcoalPitUtils {
     private CharcoalPitUtils() {

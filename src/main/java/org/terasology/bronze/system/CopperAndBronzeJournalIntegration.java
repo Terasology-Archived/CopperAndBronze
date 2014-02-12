@@ -16,6 +16,7 @@
 package org.terasology.bronze.system;
 
 import org.terasology.asset.Assets;
+import org.terasology.crafting.component.CraftingStationIngredientComponent;
 import org.terasology.entitySystem.entity.EntityRef;
 import org.terasology.entitySystem.event.ReceiveEvent;
 import org.terasology.entitySystem.systems.ComponentSystem;
@@ -26,7 +27,6 @@ import org.terasology.journal.StaticJournalChapterHandler;
 import org.terasology.logic.characters.CharacterComponent;
 import org.terasology.logic.inventory.events.InventorySlotChangedEvent;
 import org.terasology.registry.In;
-import org.terasology.workstation.component.CraftingStationIngredientComponent;
 
 /**
  * @author Marcin Sciesinski <marcins78@gmail.com>
