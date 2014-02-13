@@ -15,7 +15,7 @@
  */
 package org.terasology.cab.system;
 
-import org.terasology.anotherWorld.util.Filter;
+import com.google.common.base.Predicate;
 import org.terasology.cab.CopperAndBronze;
 import org.terasology.cab.component.CharcoalPitComponent;
 import org.terasology.core.logic.blockDropGrammar.BlockDropGrammarComponent;
@@ -82,9 +82,9 @@ public class RegisterBronzeRecipes extends BaseComponentSystem {
                 new SurroundMultiBlockFormItemRecipe(
                         new ToolTypeEntityFilter("hammer"), new BlockUriEntityFilter(new BlockUri("Core", "Brick")),
                         new BlockUriEntityFilter(new BlockUri("Engine", "Air")), new AllowableCharcoalPitSize(),
-                        new Filter<ActivateEvent>() {
+                        new Predicate<ActivateEvent>() {
                             @Override
-                            public boolean accepts(ActivateEvent value) {
+                            public boolean apply(ActivateEvent value) {
                                 return true;
                             }
                         }, "CopperAndBronze:CharcoalPit", new CharcoalPitCallback())
@@ -167,9 +167,9 @@ public class RegisterBronzeRecipes extends BaseComponentSystem {
         }
     }
 
-    private final static class AllowableCharcoalPitSize implements Filter<Vector3i> {
+    private final static class AllowableCharcoalPitSize implements Predicate<Vector3i> {
         @Override
-        public boolean accepts(Vector3i value) {
+        public boolean apply(Vector3i value) {
             // Minimum size 3x3x3
             return (value.x >= 3 && value.y >= 3 && value.z >= 3
                     // X and Z are odd to allow finding center block
