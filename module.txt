@@ -38,10 +38,6 @@
                 "minVersion" : "0.1.0"
             },
             {
-                "id" : "Machines",
-                "minVersion" : "0.1.0"
-            },
-            {
                 "id" : "Fences",
                 "minVersion" : "0.1.0"
             }],
