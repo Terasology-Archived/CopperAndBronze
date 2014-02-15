@@ -6,5 +6,9 @@
     },
     "DisplayName": {
         "name": "Coal"
+    },
+    "HeatFuel": {
+        "heatProvided": 700,
+        "consumeTime": 10000
     }
 }

@@ -6,5 +6,9 @@
     },
     "DisplayName": {
         "name": "Charcoal"
+    },
+    "HeatFuel": {
+        "heatProvided": 900,
+        "consumeTime": 15000
     }
 }
