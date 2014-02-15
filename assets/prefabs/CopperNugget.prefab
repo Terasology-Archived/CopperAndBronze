@@ -5,7 +5,7 @@
         "stackId": "CopperAndBronze:CopperNugget"
     },
     "DisplayName": {
-        "name": "Native Copper Nugget"
+        "name": "Copper Nugget"
     },
     "CraftingStationIngredient": {
         "type": "CopperAndBronze:copperNugget"
