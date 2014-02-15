@@ -1,0 +1,13 @@
+{
+    "ProcessDefinition": {
+        "processType": "CopperAndBronze:BasicMetalcrafting"
+    },
+    "CraftingStationRecipe": {
+        "recipeId": "Tools|CopperAndBronze:CopperAxe",
+
+        "recipeComponents": ["1*CopperAndBronze:copperNugget", "1*CopperAndBronze:fuel", "1*WoodAndStone:stick"],
+        "recipeTools": ["1*hammer"],
+
+        "itemResult": "1*CopperAndBronze:CopperAxe"
+    }
+}

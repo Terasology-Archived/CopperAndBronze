@@ -1,0 +1,20 @@
+{
+    "parent": "engine:iconItem",
+    "Item": {
+        "icon": "CopperAndBronze:bronze.CopperHammer",
+        "renderWithIcon": true
+    },
+    "DisplayName": {
+        "name": "Copper Hammer"
+    },
+    "Durability": {
+        "durability": 250,
+        "maxDurability": 250
+    },
+    "CraftInHandRecipe": {
+        "componentType": "WoodAndStone:hammer"
+    },
+    "CraftingStationTool": {
+        "type": "hammer"
+    }
+}

@@ -1,0 +1,15 @@
+{
+    "parent": "engine:iconItem",
+    "Item": {
+        "icon": "CopperAndBronze:bronze.CopperPickaxe",
+        "renderWithIcon": true,
+        "damageType": "pickaxeDamage"
+    },
+    "DisplayName": {
+        "name": "Copper Pickaxe"
+    },
+    "Durability": {
+        "durability": 250,
+        "maxDurability": 250
+    }
+}

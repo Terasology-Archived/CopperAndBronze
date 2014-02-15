@@ -7,7 +7,7 @@
         "tileNames": [
             "ChalcopyriteOreCrystal", "Coal", "CopperNugget", "ChalcopyriteCrystalDust", "Charcoal", "", "", "",
             "", "", "", "", "", "", "", "",
-            "", "", "", "", "", "", "", "",
+            "", "CopperAxe", "CopperHammer", "CopperPickaxe", "CopperShovel", "", "", "",
             "", "", "", "", "", "", "", "",
             "", "", "", "", "", "", "", "",
             "", "", "", "", "", "", "", "",
