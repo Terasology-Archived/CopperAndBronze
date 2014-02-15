@@ -4,7 +4,7 @@
     },
     "Workstation": {
         "uiPrefab": "WoodAndStone:CraftInStation",
-        "supportedProcessTypes": ["WoodAndStone:BasicMetalcrafting", "Crafting:UpgradeCraftingWorkstation"]
+        "supportedProcessTypes": ["CopperAndBronze:BasicMetalcrafting", "Crafting:UpgradeCraftingWorkstation"]
     },
     "CraftingStation": {
         "type": "CopperAndBronze:BasicMetalcrafting",

@@ -10,5 +10,8 @@
     "HeatFuel": {
         "heatProvided": 900,
         "consumeTime": 15000
+    },
+    "CraftingStationIngredient": {
+        "type": "CopperAndBronze:fuel"
     }
 }

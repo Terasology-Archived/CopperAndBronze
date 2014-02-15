@@ -1,6 +1,6 @@
 {
     "ProcessDefinition": {
-        "processType": "WoodAndStone:BasicMetalcrafting"
+        "processType": "CopperAndBronze:BasicMetalcrafting"
     },
     "CraftingStationRecipe": {
         "recipeId": "Materials|CopperAndBronze:ChalcopyriteCrystalDust",
