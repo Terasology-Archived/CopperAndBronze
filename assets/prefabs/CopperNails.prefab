@@ -1,0 +1,13 @@
+{
+    "Item": {
+        "icon": "CopperAndBronze:bronze.CopperNails",
+        "renderWithIcon": true,
+        "stackId": "CopperAndBronze:CopperNails"
+    },
+    "DisplayName": {
+        "name": "Copper Nails"
+    },
+    "CraftingStationIngredient": {
+        "type": "CopperAndBronze:nail"
+    }
+}

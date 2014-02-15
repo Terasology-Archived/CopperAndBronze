@@ -1,0 +1,13 @@
+{
+    "ProcessDefinition": {
+        "processType": "WoodAndStone:StandardWoodcrafting"
+    },
+    "CraftingStationRecipe": {
+        "recipeId": "Building|WoodAndStone:Chest",
+
+        "recipeComponents": ["4*WoodAndStone:plank", "1*CopperAndBronze:nail"],
+        "recipeTools": ["1*hammer"],
+
+        "blockResult": "1*CopperAndBronze:Chest"
+    }
+}

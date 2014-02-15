@@ -1,0 +1,15 @@
+{
+    "attachmentAllowed": false,
+    "rotation": "horizontal",
+    "tiles": {
+        "sides": "Core:ChestSides",
+        "front": "Core:ChestFront",
+        "topBottom": "Core:ChestTopBottom"
+    },
+    "entity": {
+        "prefab": "CopperAndBronze:DropChest"
+    },
+    "inventory": {
+        "stackable": false
+    }
+}
