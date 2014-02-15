@@ -20,32 +20,35 @@ import org.terasology.cab.event.ProduceCharcoalRequest;
 import org.terasology.cab.system.CharcoalPitUtils;
 import org.terasology.engine.Time;
 import org.terasology.entitySystem.entity.EntityRef;
+import org.terasology.logic.players.LocalPlayer;
 import org.terasology.registry.CoreRegistry;
-import org.terasology.rendering.gui.framework.UIDisplayElement;
-import org.terasology.rendering.gui.framework.events.ClickListener;
-import org.terasology.rendering.gui.widgets.UIButton;
-import org.terasology.rendering.gui.widgets.UIInventoryGrid;
-import org.terasology.rendering.gui.windows.UIScreenInventory;
-
-import javax.vecmath.Vector2f;
+import org.terasology.rendering.nui.CoreScreenLayer;
+import org.terasology.rendering.nui.NUIManager;
+import org.terasology.rendering.nui.UIWidget;
+import org.terasology.rendering.nui.layers.ingame.inventory.InventoryGrid;
+import org.terasology.rendering.nui.widgets.ActivateEventListener;
+import org.terasology.rendering.nui.widgets.UIButton;
 
 /**
  * @author Marcin Sciesinski <marcins78@gmail.com>
  */
-public class UICharcoalPit extends UIScreenInventory {
+public class UICharcoalPit extends CoreScreenLayer {
     private EntityRef charcoalPitEntity;
+    private InventoryGrid input;
+    private InventoryGrid output;
+    private UIButton process;
 
-    private int windowWidth = 500;
-    private int windowHeight = 320;
+    @Override
+    public void initialise() {
+        input = find("input", InventoryGrid.class);
+        output = find("output", InventoryGrid.class);
 
-    private UIInventoryGrid inputGrid;
-    private UIInventoryGrid outputGrid;
-    private UIButton processButton;
+        InventoryGrid player = find("player", InventoryGrid.class);
+        player.setTargetEntity(CoreRegistry.get(LocalPlayer.class).getCharacterEntity());
+        player.setCellOffset(10);
+        player.setMaxCellCount(30);
 
-    public UICharcoalPit() {
-        super();
-        setId("CopperAndBronze:CharcoalPit");
-        setModal(true);
+        process = find("process", UIButton.class);
     }
 
     public void setCharcoalPit(final EntityRef entity) {
@@ -53,54 +56,54 @@ public class UICharcoalPit extends UIScreenInventory {
 
         CharcoalPitComponent charcoalPit = entity.getComponent(CharcoalPitComponent.class);
 
-        inputGrid = new UIInventoryGrid(5);
-        inputGrid.linkToEntity(entity, 0, charcoalPit.inputSlotCount);
-        inputGrid.setPosition(new Vector2f(0, 0));
+        input.setTargetEntity(entity);
+        input.setCellOffset(0);
+        input.setMaxCellCount(1);
 
-        outputGrid = new UIInventoryGrid(5);
-        outputGrid.linkToEntity(entity, charcoalPit.inputSlotCount, charcoalPit.outputSlotCount);
-        inputGrid.setPosition(new Vector2f(windowWidth - 150, 0));
+        output.setTargetEntity(entity);
+        output.setCellOffset(1);
+        output.setMaxCellCount(1);
 
-        processButton = new UIButton(new Vector2f(80, 38), UIButton.ButtonType.NORMAL);
-        processButton.getLabel().setText("To Charcoal");
-        processButton.setPosition(new Vector2f(150, 0));
-        processButton.addClickListener(
-                new ClickListener() {
+        process.setText("To Charcoal");
+        process.subscribe(
+                new ActivateEventListener() {
                     @Override
-                    public void click(UIDisplayElement element, int button) {
+                    public void onActivated(UIWidget widget) {
                         entity.send(new ProduceCharcoalRequest());
                     }
                 });
-
-        addDisplayElement(inputGrid);
-        addDisplayElement(processButton);
-        addDisplayElement(outputGrid);
     }
 
-    public void update() {
-        super.update();
-
+    @Override
+    public void update(float delta) {
         if (!charcoalPitEntity.exists()) {
-            close();
+            CoreRegistry.get(NUIManager.class).closeScreen(this);
             return;
         }
+
+        super.update(delta);
 
         long worldTime = CoreRegistry.get(Time.class).getGameTimeInMs();
 
         CharcoalPitComponent charcoalPit = charcoalPitEntity.getComponent(CharcoalPitComponent.class);
         if (charcoalPit.burnFinishWorldTime > worldTime) {
             // It's burning wood now
-            inputGrid.setVisible(false);
-            processButton.setVisible(false);
-            outputGrid.setVisible(false);
+            input.setVisible(false);
+            process.setVisible(false);
+            output.setVisible(false);
         } else {
             // It's not burning wood
-            inputGrid.setVisible(true);
-            outputGrid.setVisible(true);
+            input.setVisible(true);
+            output.setVisible(true);
 
             int logCount = CharcoalPitUtils.getLogCount(charcoalPitEntity);
 
-            processButton.setVisible(CharcoalPitUtils.canBurnCharcoal(logCount, charcoalPitEntity));
+            process.setVisible(CharcoalPitUtils.canBurnCharcoal(logCount, charcoalPitEntity));
         }
+    }
+
+    @Override
+    public boolean isModal() {
+        return false;
     }
 }

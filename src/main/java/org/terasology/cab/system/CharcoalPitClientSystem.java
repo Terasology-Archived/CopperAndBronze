@@ -26,9 +26,9 @@ import org.terasology.entitySystem.systems.BaseComponentSystem;
 import org.terasology.entitySystem.systems.RegisterMode;
 import org.terasology.entitySystem.systems.RegisterSystem;
 import org.terasology.entitySystem.systems.UpdateSubscriberSystem;
-import org.terasology.logic.manager.GUIManager;
 import org.terasology.logic.particles.BlockParticleEffectComponent;
 import org.terasology.registry.In;
+import org.terasology.rendering.nui.NUIManager;
 
 /**
  * @author Marcin Sciesinski <marcins78@gmail.com>
@@ -36,7 +36,7 @@ import org.terasology.registry.In;
 @RegisterSystem(value = RegisterMode.CLIENT)
 public class CharcoalPitClientSystem extends BaseComponentSystem implements UpdateSubscriberSystem {
     @In
-    private GUIManager guiManager;
+    private NUIManager nuiManager;
     @In
     private EntityManager entityManager;
     @In
@@ -46,7 +46,6 @@ public class CharcoalPitClientSystem extends BaseComponentSystem implements Upda
 
     @Override
     public void initialise() {
-        guiManager.registerWindow("CopperAndBronze:CharcoalPit", UICharcoalPit.class);
     }
 
     @Override
@@ -65,7 +64,7 @@ public class CharcoalPitClientSystem extends BaseComponentSystem implements Upda
 
     @ReceiveEvent
     public void openCharcoalPitWindow(OpenCharcoalPitRequest event, EntityRef charcoalPit) {
-        final UICharcoalPit uiCharcoalPit = (UICharcoalPit) guiManager.openWindow("CopperAndBronze:CharcoalPit");
+        UICharcoalPit uiCharcoalPit = nuiManager.pushScreen("CopperAndBronze:CharcoalPit", UICharcoalPit.class);
         uiCharcoalPit.setCharcoalPit(charcoalPit);
     }
 }
