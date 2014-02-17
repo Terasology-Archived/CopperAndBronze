@@ -42,23 +42,23 @@ public class CopperAndBronzeJournalIntegration extends BaseComponentSystem {
     public void initialise() {
         StaticJournalChapterHandler chapterHandler = new StaticJournalChapterHandler();
 
-        chapterHandler.registerJournalEntry("chalcopyriteCrystalAndStation",
+        chapterHandler.registerJournalEntry("chalcopyriteCrystalAndStation", true,
                 "I found Chalcopyrite Crystal, it is a great source of copper. I should be able crush it in metal station into " +
                         "Chalcopyrite Crystal Dust. Once in that form, I will be able to extract copper out of it to build stronger " +
                         "tools.\n\nTo build the station, I need two Cobblestone blocks side-by-side and use my hammer on them " +
                         "as with any previous stations.");
 
-        chapterHandler.registerJournalEntry("chalcopyriteCrystal",
+        chapterHandler.registerJournalEntry("chalcopyriteCrystal", true,
                 "I found Chalcopyrite Crystal, it is a great source of copper. I should be able crush it in metal station into " +
                         "Chalcopyrite Crystal Dust. Once in that form, I will be able to extract copper out of it to build stronger " +
                         "tools.");
 
-        chapterHandler.registerJournalEntry("nativeCopperAndStation",
+        chapterHandler.registerJournalEntry("nativeCopperAndStation", true,
                 "I found Native Copper. Boy, am I lucky! This is a very rare find and is a pure source of copper. I should be able " +
                         "to build stronger tools using it in metal station.\n\nTo build the station, I need two " +
                         "Cobblestone blocks side-by-side and use my hammer on them as with any previous stations.");
 
-        chapterHandler.registerJournalEntry("nativeCopper",
+        chapterHandler.registerJournalEntry("nativeCopper", true,
                 "I found Native Copper. Boy, am I lucky! This is a very rare find and is a pure source of copper. I should be able " +
                         "to build stronger tools using it in metal station.");
 
