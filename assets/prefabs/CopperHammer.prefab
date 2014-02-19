@@ -12,7 +12,7 @@
         "durability": 250,
         "maxDurability": 250
     },
-    "CraftInHandRecipe": {
+    "CraftInHandIngredient": {
         "componentType": "WoodAndStone:hammer"
     },
     "CraftingStationTool": {
