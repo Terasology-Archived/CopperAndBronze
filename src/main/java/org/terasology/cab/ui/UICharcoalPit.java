@@ -58,11 +58,11 @@ public class UICharcoalPit extends CoreScreenLayer {
 
         input.setTargetEntity(entity);
         input.setCellOffset(0);
-        input.setMaxCellCount(1);
+        input.setMaxCellCount(charcoalPit.inputSlotCount);
 
         output.setTargetEntity(entity);
-        output.setCellOffset(1);
-        output.setMaxCellCount(1);
+        output.setCellOffset(charcoalPit.inputSlotCount);
+        output.setMaxCellCount(charcoalPit.outputSlotCount);
 
         process.setText("To Charcoal");
         process.subscribe(

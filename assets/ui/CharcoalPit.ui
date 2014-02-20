@@ -8,13 +8,16 @@
                 "type": "relativeLayout",
                 "contents": [
                     {
-                        "type": "InventoryGrid",
-                        "id": "input",
+                        "type": "ScrollableArea",
+                        "content": {
+                            "type": "InventoryGrid",
+                            "id": "input"
+                        },
                         "layoutInfo": {
-                            "width": 56,
-                            "height": 56,
+                            "width": 184,
+                            "height": 112,
                             "position-left": {
-                                "offset": 150
+                                "offset": 22
                             },
                             "position-top": {
                                 "offset": 5
@@ -36,11 +39,14 @@
                         }
                     },
                     {
-                        "type": "InventoryGrid",
-                        "id": "output",
+                        "type": "ScrollableArea",
+                        "content": {
+                            "type": "InventoryGrid",
+                            "id": "output"
+                        },
                         "layoutInfo": {
-                            "width": 56,
-                            "height": 56,
+                            "width": 184,
+                            "height": 112,
                             "position-left": {
                                 "offset": 364
                             },
@@ -59,14 +65,14 @@
                                 "offset": 5
                             },
                             "position-top": {
-                                "offset": 66
+                                "offset": 122
                             }
                         }
                     }
                 ],
                 "layoutInfo": {
                     "width": 570,
-                    "height": 239,
+                    "height": 295,
                     "position-horizontal-center": {},
                     "position-vertical-center": {}
                 }
