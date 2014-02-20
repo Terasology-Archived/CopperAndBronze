@@ -1,16 +1,16 @@
 {
     "texture": "CopperAndBronze:bronze",
-    "textureSize": [256, 256],
+    "textureSize": [512, 512],
     "grid": {
-        "tileSize": [32, 32],
+        "tileSize": [64, 64],
         "gridDimensions": [8, 8],
         "tileNames": [
-            "ChalcopyriteOreCrystal", "Coal", "CopperNugget", "ChalcopyriteCrystalDust", "Charcoal", "CopperNails", "", "",
+            "ChalcopyriteOreCrystal", "ChalcopyriteCrystalDust", "CopperNugget", "", "", "", "", "",
+            "Coal", "Charcoal", "", "", "", "", "", "",
+            "CopperNails", "", "", "", "", "", "", "",
             "", "", "", "", "", "", "", "",
-            "", "CopperAxe", "CopperHammer", "", "CopperShovel", "", "", "",
-            "", "", "", "", "", "", "", "",
-            "", "", "", "", "", "", "", "",
-            "", "", "", "", "", "", "", "",
+            "CopperAxe", "CopperHammer", "CopperShovel", "", "", "", "", "",
+            "BronzeAxe", "BronzeHammer", "BronzeShovel", "BronzePickaxe", "", "", "", "",
             "", "", "", "", "", "", "", "",
             "", "", "", "", "", "", "", ""
         ]
