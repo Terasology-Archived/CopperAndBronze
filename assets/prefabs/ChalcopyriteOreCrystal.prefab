@@ -10,5 +10,9 @@
     },
     "CraftingStationIngredient": {
         "type": "CopperAndBronze:chalcopyriteOreCrystal"
+    },
+    "MillProcessed": {
+        "millLength": 8000,
+        "itemResult": "1*CopperAndBronze:ChalcopyriteCrystalDust"
     }
 }
