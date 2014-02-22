@@ -27,7 +27,8 @@ import org.terasology.logic.common.ActivateEvent;
 import org.terasology.logic.inventory.InventoryComponent;
 import org.terasology.math.Region3i;
 import org.terasology.math.Vector3i;
-import org.terasology.multiBlock.BasicHorizontalSizeFilter;
+import org.terasology.multiBlock.Basic3DSizeFilter;
+import org.terasology.multiBlock.BlockUriEntityFilter;
 import org.terasology.multiBlock.MultiBlockCallback;
 import org.terasology.multiBlock.MultiBlockFormRecipeRegistry;
 import org.terasology.multiBlock.UniformBlockReplacementCallback;
@@ -51,7 +52,7 @@ import java.util.Map;
  * @author Marcin Sciesinski <marcins78@gmail.com>
  */
 @RegisterSystem
-public class RegisterBronzeRecipes extends BaseComponentSystem {
+public class RegisterCopperAndBronzeRecipes extends BaseComponentSystem {
     @In
     private WorkstationRegistry workstationRegistry;
     @In
@@ -72,7 +73,7 @@ public class RegisterBronzeRecipes extends BaseComponentSystem {
         multiBlockRecipeRegistry.addMultiBlockFormItemRecipe(
                 new UniformMultiBlockFormItemRecipe(
                         new ToolTypeEntityFilter("hammer"), new UseOnTopFilter(),
-                        new BlockUriEntityFilter(new BlockUri("Core", "CobbleStone")), new BasicHorizontalSizeFilter(2, 1, 1, 1),
+                        new BlockUriEntityFilter(new BlockUri("Core", "CobbleStone")), new Basic3DSizeFilter(2, 1, 1, 1),
                         "CopperAndBronze:BasicMetalcrafting",
                         new UniformBlockReplacementCallback<Void>(blockManager.getBlock("CopperAndBronze:BasicMetalStation"))));
     }
