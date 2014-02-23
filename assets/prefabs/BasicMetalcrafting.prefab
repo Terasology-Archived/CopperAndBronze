@@ -1,6 +1,6 @@
 {
     "BlockDropGrammar": {
-        "blockDrops": "2*Core:CobbleStone"
+        "blockDrops": ["2*Core:CobbleStone"]
     },
     "Workstation": {
         "uiPrefab": "WoodAndStone:CraftInStation",
