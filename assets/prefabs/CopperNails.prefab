@@ -1,4 +1,5 @@
 {
+    "parent": "engine:iconItem",
     "Item": {
         "icon": "CopperAndBronze:bronze.CopperNails",
         "renderWithIcon": true,

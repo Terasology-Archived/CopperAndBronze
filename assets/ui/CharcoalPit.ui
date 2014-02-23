@@ -1,6 +1,6 @@
 {
     "type": "UICharcoalPit",
-    "skin": "default",
+    "skin": "WoodAndStone:CraftingStation",
     "contents": {
         "type": "relativeLayout",
         "contents": [
