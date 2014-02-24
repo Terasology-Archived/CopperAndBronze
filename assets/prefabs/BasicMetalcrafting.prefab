@@ -3,8 +3,9 @@
         "blockDrops": ["2*Core:CobbleStone"]
     },
     "Workstation": {
-        "uiPrefab": "WoodAndStone:CraftInStation",
+        "uiPrefab": "CopperAndBronze:MetalStation",
         "supportedProcessTypes": {
+            "Machines:Furnace": true,
             "CopperAndBronze:BasicMetalcrafting": false,
             "Crafting:UpgradeCraftingWorkstation": false
         }
@@ -23,6 +24,10 @@
                 "slotStart": 0,
                 "slotCount": 1
             },
+            "FUEL": {
+                "slotStart": 6,
+                "slotCount": 1
+            },
             "OUTPUT": {
                 "slotStart": 5,
                 "slotCount": 1
@@ -36,17 +41,19 @@
     "Inventory": {
         "privateToOwner": false,
         "itemSlots": [
-            // Upgrade slot
-            0,
-            // Tool slot
-            0,
-            // Component slots
             0,
             0,
             0,
-            // Output slot
+            0,
+            0,
+            0,
             0
         ]
+    },
+    "HeatProducer": {
+        "temperatureAbsorptionRate": 0.9,
+        "temperatureLossRate": 0.7,
+        "maximumTemperature": 1000
     },
     "Health": {
         "currentHealth": 5,

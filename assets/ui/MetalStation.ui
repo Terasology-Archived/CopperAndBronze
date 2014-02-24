@@ -1,0 +1,183 @@
+{
+    "type": "MetalStationWindow",
+    "skin": "WoodAndStone:CraftingStation",
+    "contents": {
+        "type": "relativeLayout",
+        "contents": [
+            {
+                "type": "relativeLayout",
+                "contents": [
+                    {
+                        "type": "ScrollableArea",
+                        "content": {
+                            "type": "InventoryGrid",
+                            "id": "ingredientsInventory"
+                        },
+                        "layoutInfo": {
+                            "width": 128,
+                            "height": 250,
+                            "position-left": {
+                                "offset": 5
+                            },
+                            "position-top": {
+                                "offset": 45
+                            }
+                        }
+                    },
+                    {
+                        "type": "InventoryGrid",
+                        "id": "upgradesInventory",
+                        "layoutInfo": {
+                            "width": 112,
+                            "height": 56,
+                            "position-left": {
+                                "offset": 5
+                            },
+                            "position-top": {
+                                "offset": 316
+                            }
+                        }
+                    },
+                    {
+                        "type": "UIButton",
+                        "id": "upgradeButton",
+                        "layoutInfo": {
+                            "width": 62,
+                            "height": 56,
+                            "position-left": {
+                                "offset": 61
+                            },
+                            "position-top": {
+                                "offset": 316
+                            }
+                        }
+                    },
+                    {
+                        "type": "TermometerWidget",
+                        "id": "temperature",
+                        "layoutInfo": {
+                            "width": 20,
+                            "height": 150,
+                            "position-left": {
+                                "offset": 156
+                            },
+                            "position-top": {
+                                "offset": 45
+                            }
+                        }
+                    },
+                    {
+                        "type": "VerticalTextureProgressWidget",
+                        "id": "burn",
+                        "image": "WoodAndStone:Fire",
+                        "layoutInfo": {
+                            "width": 50,
+                            "height": 50,
+                            "position-left": {
+                                "offset": 141
+                            },
+                            "position-top": {
+                                "offset": 200
+                            }
+                        }
+                    },
+                    {
+                        "type": "InventoryGrid",
+                        "id": "fuelInput",
+                        "layoutInfo": {
+                            "width": 56,
+                            "height": 56,
+                            "position-left": {
+                                "offset": 138
+                            },
+                            "position-top": {
+                                "offset": 255
+                            }
+                        }
+                    },
+                    {
+                        "type": "InventoryGrid",
+                        "id": "toolsInventory",
+                        "layoutInfo": {
+                            "width": 200,
+                            "height": 56,
+                            "position-left": {
+                                "offset": 259
+                            },
+                            "position-top": {
+                                "offset": 316
+                            }
+                        }
+                    },
+                    {
+                        "type": "ScrollableArea",
+                        "content": {
+                            "type": "StationAvailableRecipesWidget",
+                            "id": "availableRecipes"
+                        },
+                        "layoutInfo": {
+                            "width": 351,
+                            "height": 250,
+                            "position-left": {
+                                "offset": 204
+                            },
+                            "position-top": {
+                                "offset": 45
+                            }
+                        }
+                    },
+                    {
+                        "type": "UILoadBar",
+                        "fillTexture": "engine:statusBar",
+                        "id": "craftingProgress",
+                        "animate": false,
+                        "layoutInfo": {
+                            "width": 56,
+                            "height": 10,
+                            "position-left": {
+                                "offset": 509
+                            },
+                            "position-top": {
+                                "offset": 311
+                            }
+                        }
+                    },
+                    {
+                        "type": "InventoryGrid",
+                        "id": "resultInventory",
+                        "layoutInfo": {
+                            "width": 56,
+                            "height": 56,
+                            "position-left": {
+                                "offset": 509
+                            },
+                            "position-top": {
+                                "offset": 316
+                            }
+                        }
+                    },
+                    {
+                        "type": "InventoryGrid",
+                        "id": "playerInventory",
+                        "layoutInfo": {
+                            "width": 560,
+                            "height": 168,
+                            "position-left": {
+                                "offset": 5
+                            },
+                            "position-top": {
+                                "offset": 377
+                            }
+                        }
+                    }
+                ],
+                "layoutInfo": {
+                    "width": 570,
+                    "height": 550,
+                    "position-horizontal-center": {},
+                    "position-vertical-center": {}
+                }
+            }
+        ]
+    }
+}

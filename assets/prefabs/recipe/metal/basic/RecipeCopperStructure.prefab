@@ -5,8 +5,11 @@
     "CraftingStationRecipe": {
         "recipeId": "Materials|CopperAndBronze:CopperStructure",
 
-        "recipeComponents": ["6*CopperAndBronze:copperNugget", "1*CopperAndBronze:fuel"],
+        "recipeComponents": ["6*CopperAndBronze:copperNugget"],
         "recipeTools": ["2*hammer"],
+
+        "requiredTemperature": 850,
+        "processingDuration": 5000,
 
         "blockResult": "1*CopperAndBronze:CopperStructure"
     }
