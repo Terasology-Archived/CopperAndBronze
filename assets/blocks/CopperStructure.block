@@ -3,5 +3,9 @@
 
     "displayName": "Copper Structure",
 
-    "categories": ["mineral"]
+    "categories": ["mineral"],
+
+    "entity": {
+        "prefab": "CopperAndBronze:CopperStructure"
+    }
 }

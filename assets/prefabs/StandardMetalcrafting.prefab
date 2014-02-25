@@ -1,0 +1,73 @@
+{
+    "BlockDropGrammar": {
+        "blockDrops": ["2*Core:CobbleStone"]
+    },
+    "Workstation": {
+        "uiPrefab": "CopperAndBronze:MetalStation",
+        "supportedProcessTypes": {
+            "Machines:Furnace": true,
+            "CopperAndBronze:BasicMetalcrafting": false,
+            "CopperAndBronze:StandardMetalcrafting": false,
+            "Crafting:UpgradeCraftingWorkstation": false
+        }
+    },
+    "WorkstationInventory": {
+        "slotAssignments": {
+            "INPUT": {
+                "slotStart": 2,
+                "slotCount": 6
+            },
+            "TOOL": {
+                "slotStart": 1,
+                "slotCount": 1
+            },
+            "UPGRADE": {
+                "slotStart": 0,
+                "slotCount": 1
+            },
+            "FUEL": {
+                "slotStart": 9,
+                "slotCount": 1
+            },
+            "OUTPUT": {
+                "slotStart": 8,
+                "slotCount": 1
+            }
+        }
+    },
+    "CraftingStation": {
+        "type": "CopperAndBronze:BasicMetalcrafting",
+        "workstationUITexture": "CopperAndBronze:BasicMetalworking"
+    },
+    "Inventory": {
+        "privateToOwner": false,
+        "itemSlots": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+        ]
+    },
+    "HeatProducer": {
+        "temperatureAbsorptionRate": 0.9,
+        "temperatureLossRate": 0.65,
+        "maximumTemperature": 1200
+    },
+    "Health": {
+        "currentHealth": 5,
+        "maxHealth": 5,
+        "regenRate": 1,
+        "waitBeforeRegen": 2,
+        "destroyEntityOnNoHealth": true
+    },
+    "ActAsBlock": {
+        "block": "CopperAndBronze:StandardMetalStation"
+    },
+    "DropBlockInventory": {}
+}
