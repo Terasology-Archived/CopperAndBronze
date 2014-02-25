@@ -5,7 +5,7 @@
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
- *  http://www.apache.org/licenses/LICENSE-2.0
+ *      http://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
@@ -23,19 +23,21 @@ import org.terasology.crafting.system.CraftingWorkstationProcessFactory;
 import org.terasology.entitySystem.entity.EntityRef;
 import org.terasology.entitySystem.systems.BaseComponentSystem;
 import org.terasology.entitySystem.systems.RegisterSystem;
-import org.terasology.logic.common.ActivateEvent;
 import org.terasology.logic.inventory.InventoryComponent;
 import org.terasology.math.Region3i;
 import org.terasology.math.Vector3i;
+import org.terasology.multiBlock.Basic2DSizeFilter;
 import org.terasology.multiBlock.Basic3DSizeFilter;
 import org.terasology.multiBlock.BlockUriEntityFilter;
 import org.terasology.multiBlock.MultiBlockCallback;
 import org.terasology.multiBlock.MultiBlockFormRecipeRegistry;
 import org.terasology.multiBlock.UniformBlockReplacementCallback;
+import org.terasology.multiBlock.recipe.LayeredMultiBlockFormItemRecipe;
 import org.terasology.multiBlock.recipe.SurroundMultiBlockFormItemRecipe;
 import org.terasology.multiBlock.recipe.UniformMultiBlockFormItemRecipe;
 import org.terasology.registry.CoreRegistry;
 import org.terasology.registry.In;
+import org.terasology.was.system.AnyActivityFilter;
 import org.terasology.was.system.ToolTypeEntityFilter;
 import org.terasology.was.system.UseOnTopFilter;
 import org.terasology.workstation.system.WorkstationRegistry;
@@ -83,13 +85,14 @@ public class RegisterCopperAndBronzeRecipes extends BaseComponentSystem {
                 new SurroundMultiBlockFormItemRecipe(
                         new ToolTypeEntityFilter("hammer"), new BlockUriEntityFilter(new BlockUri("Core", "Brick")),
                         new BlockUriEntityFilter(new BlockUri("Engine", "Air")), new AllowableCharcoalPitSize(),
-                        new Predicate<ActivateEvent>() {
-                            @Override
-                            public boolean apply(ActivateEvent value) {
-                                return true;
-                            }
-                        }, "CopperAndBronze:CharcoalPit", new CharcoalPitCallback())
-        );
+                        new AnyActivityFilter(), "CopperAndBronze:CharcoalPit", new CharcoalPitCallback()));
+
+        final LayeredMultiBlockFormItemRecipe bloomeryRecipe = new LayeredMultiBlockFormItemRecipe(
+                new ToolTypeEntityFilter("hammer"), new Basic2DSizeFilter(1, 1), new AnyActivityFilter(),
+                "CopperAndBronze:Bloomery", null);
+        bloomeryRecipe.addLayer(1, 1, new BlockUriEntityFilter(new BlockUri("CopperAndBronze", "CopperStructure")));
+        bloomeryRecipe.addLayer(2, 2, new BlockUriEntityFilter(new BlockUri("Core", "Brick")));
+        multiBlockRecipeRegistry.addMultiBlockFormItemRecipe(bloomeryRecipe);
     }
 
     private final static class CharcoalPitCallback implements MultiBlockCallback<Void> {
