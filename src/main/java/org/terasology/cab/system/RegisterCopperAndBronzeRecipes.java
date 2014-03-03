@@ -88,7 +88,7 @@ public class RegisterCopperAndBronzeRecipes extends BaseComponentSystem {
                         new AnyActivityFilter(), "CopperAndBronze:CharcoalPit", new CharcoalPitCallback()));
 
         final LayeredMultiBlockFormItemRecipe bloomeryRecipe = new LayeredMultiBlockFormItemRecipe(
-                new ToolTypeEntityFilter("hammer"), new Basic2DSizeFilter(1, 1), new AnyActivityFilter(),
+                new ToolTypeEntityFilter("hammer"), new Basic2DSizeFilter(2, 2), new AnyActivityFilter(),
                 "CopperAndBronze:Bloomery", null);
         bloomeryRecipe.addLayer(1, 1, new BlockUriEntityFilter(new BlockUri("CopperAndBronze", "CopperStructure")));
         bloomeryRecipe.addLayer(2, 2, new BlockUriEntityFilter(new BlockUri("Core", "Brick")));
