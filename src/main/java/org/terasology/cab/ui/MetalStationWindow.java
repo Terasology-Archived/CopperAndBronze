@@ -20,7 +20,7 @@ import org.terasology.crafting.ui.workstation.StationAvailableRecipesWidget;
 import org.terasology.engine.Time;
 import org.terasology.entitySystem.entity.EntityRef;
 import org.terasology.heat.component.HeatProducerComponent;
-import org.terasology.heat.ui.TermometerWidget;
+import org.terasology.heat.ui.ThermometerWidget;
 import org.terasology.logic.players.LocalPlayer;
 import org.terasology.registry.CoreRegistry;
 import org.terasology.rendering.nui.CoreScreenLayer;
@@ -42,7 +42,7 @@ public class MetalStationWindow extends CoreScreenLayer implements WorkstationUI
 
     private InventoryGrid ingredientsInventory;
     private InventoryGrid toolsInventory;
-    private TermometerWidget temperature;
+    private ThermometerWidget temperature;
     private VerticalTextureProgressWidget burn;
     private InventoryGrid fuelInput;
     private StationAvailableRecipesWidget availableRecipes;
@@ -61,7 +61,7 @@ public class MetalStationWindow extends CoreScreenLayer implements WorkstationUI
 
         toolsInventory = find("toolsInventory", InventoryGrid.class);
 
-        temperature = find("temperature", TermometerWidget.class);
+        temperature = find("temperature", ThermometerWidget.class);
 
         burn = find("burn", VerticalTextureProgressWidget.class);
         burn.setMinY(76);
