@@ -19,7 +19,6 @@ import org.terasology.cab.CopperAndBronze;
 import org.terasology.crafting.ui.workstation.StationAvailableRecipesWidget;
 import org.terasology.engine.Time;
 import org.terasology.entitySystem.entity.EntityRef;
-import org.terasology.heat.HeatUtils;
 import org.terasology.heat.component.HeatProducerComponent;
 import org.terasology.heat.ui.TermometerWidget;
 import org.terasology.logic.players.LocalPlayer;
@@ -33,7 +32,6 @@ import org.terasology.was.ui.VerticalTextureProgressWidget;
 import org.terasology.was.ui.WorkstationScreenUtils;
 import org.terasology.workstation.component.WorkstationProcessingComponent;
 import org.terasology.workstation.ui.WorkstationUI;
-import org.terasology.world.BlockEntityRegistry;
 
 import java.util.List;
 
@@ -92,7 +90,7 @@ public class MetalStationWindow extends CoreScreenLayer implements WorkstationUI
         WorkstationScreenUtils.setupInventoryGrid(station, resultInventory, "OUTPUT");
         WorkstationScreenUtils.setupInventoryGrid(station, fuelInput, "FUEL");
 
-        setupTemperatureWidget(station);
+        WorkstationScreenUtils.setupTemperatureWidget(station, temperature, 20f);
 
         burn.bindValue(
                 new Binding<Float>() {
@@ -134,8 +132,7 @@ public class MetalStationWindow extends CoreScreenLayer implements WorkstationUI
                     @Override
                     public void set(Boolean value) {
                     }
-                }
-        );
+                });
         craftingProgress.bindValue(
                 new Binding<Float>() {
                     @Override
@@ -157,49 +154,7 @@ public class MetalStationWindow extends CoreScreenLayer implements WorkstationUI
                     @Override
                     public void set(Float value) {
                     }
-                }
-        );
-    }
-
-    private void setupTemperatureWidget(final EntityRef station) {
-        temperature.bindMaxTemperature(
-                new Binding<Float>() {
-                    @Override
-                    public Float get() {
-                        HeatProducerComponent producer = station.getComponent(HeatProducerComponent.class);
-                        return producer.maximumTemperature;
-                    }
-
-                    @Override
-                    public void set(Float value) {
-                    }
-                }
-        );
-        temperature.setMinTemperature(20f);
-
-        temperature.bindTemperature(
-                new Binding<Float>() {
-                    @Override
-                    public Float get() {
-                        return HeatUtils.calculateHeatForEntity(station, CoreRegistry.get(BlockEntityRegistry.class));
-                    }
-
-                    @Override
-                    public void set(Float value) {
-                    }
                 });
-        temperature.bindTooltip(
-                new Binding<String>() {
-                    @Override
-                    public String get() {
-                        return Math.round(HeatUtils.calculateHeatForEntity(station, CoreRegistry.get(BlockEntityRegistry.class))) + " C";
-                    }
-
-                    @Override
-                    public void set(String value) {
-                    }
-                }
-        );
     }
 
     @Override
