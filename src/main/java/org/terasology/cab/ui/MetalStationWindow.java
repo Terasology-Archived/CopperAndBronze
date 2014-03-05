@@ -30,7 +30,7 @@ import org.terasology.rendering.nui.layers.ingame.inventory.InventoryGrid;
 import org.terasology.rendering.nui.widgets.UIButton;
 import org.terasology.rendering.nui.widgets.UILoadBar;
 import org.terasology.was.ui.VerticalTextureProgressWidget;
-import org.terasology.workstation.component.WorkstationInventoryComponent;
+import org.terasology.was.ui.WorkstationScreenUtils;
 import org.terasology.workstation.component.WorkstationProcessingComponent;
 import org.terasology.workstation.ui.WorkstationUI;
 import org.terasology.world.BlockEntityRegistry;
@@ -86,24 +86,11 @@ public class MetalStationWindow extends CoreScreenLayer implements WorkstationUI
 
     @Override
     public void initializeWorkstation(final EntityRef station) {
-        WorkstationInventoryComponent workstationInventory = station.getComponent(WorkstationInventoryComponent.class);
-        WorkstationInventoryComponent.SlotAssignment inputAssignments = workstationInventory.slotAssignments.get("INPUT");
-        WorkstationInventoryComponent.SlotAssignment toolAssignments = workstationInventory.slotAssignments.get("TOOL");
-        WorkstationInventoryComponent.SlotAssignment resultAssignments = workstationInventory.slotAssignments.get("OUTPUT");
-        WorkstationInventoryComponent.SlotAssignment upgradeAssignments = workstationInventory.slotAssignments.get("UPGRADE");
-        WorkstationInventoryComponent.SlotAssignment fuelAssignments = workstationInventory.slotAssignments.get("FUEL");
-
-        ingredientsInventory.setTargetEntity(station);
-        ingredientsInventory.setCellOffset(inputAssignments.slotStart);
-        ingredientsInventory.setMaxCellCount(inputAssignments.slotCount);
-
-        upgrades.setTargetEntity(station);
-        upgrades.setCellOffset(upgradeAssignments.slotStart);
-        upgrades.setMaxCellCount(upgradeAssignments.slotCount);
-
-        toolsInventory.setTargetEntity(station);
-        toolsInventory.setCellOffset(toolAssignments.slotStart);
-        toolsInventory.setMaxCellCount(toolAssignments.slotCount);
+        WorkstationScreenUtils.setupInventoryGrid(station, ingredientsInventory, "INPUT");
+        WorkstationScreenUtils.setupInventoryGrid(station, toolsInventory, "TOOL");
+        WorkstationScreenUtils.setupInventoryGrid(station, upgrades, "UPGRADE");
+        WorkstationScreenUtils.setupInventoryGrid(station, resultInventory, "OUTPUT");
+        WorkstationScreenUtils.setupInventoryGrid(station, fuelInput, "FUEL");
 
         setupTemperatureWidget(station);
 
@@ -129,10 +116,6 @@ public class MetalStationWindow extends CoreScreenLayer implements WorkstationUI
                     public void set(Float value) {
                     }
                 });
-
-        fuelInput.setTargetEntity(station);
-        fuelInput.setCellOffset(fuelAssignments.slotStart);
-        fuelInput.setMaxCellCount(fuelAssignments.slotCount);
 
         availableRecipes.setStation(station);
 
@@ -176,10 +159,6 @@ public class MetalStationWindow extends CoreScreenLayer implements WorkstationUI
                     }
                 }
         );
-
-        resultInventory.setTargetEntity(station);
-        resultInventory.setCellOffset(resultAssignments.slotStart);
-        resultInventory.setMaxCellCount(resultAssignments.slotCount);
     }
 
     private void setupTemperatureWidget(final EntityRef station) {
