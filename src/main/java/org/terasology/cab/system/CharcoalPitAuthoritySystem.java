@@ -28,7 +28,7 @@ import org.terasology.entitySystem.systems.BaseComponentSystem;
 import org.terasology.entitySystem.systems.RegisterMode;
 import org.terasology.entitySystem.systems.RegisterSystem;
 import org.terasology.logic.common.ActivateEvent;
-import org.terasology.logic.delay.AddDelayedActionEvent;
+import org.terasology.logic.delay.DelayManager;
 import org.terasology.logic.delay.DelayedActionTriggeredEvent;
 import org.terasology.logic.inventory.InventoryComponent;
 import org.terasology.logic.inventory.InventoryUtils;
@@ -55,6 +55,8 @@ public class CharcoalPitAuthoritySystem extends BaseComponentSystem {
     private PrefabManager prefabManager;
     @In
     private EntityManager entityManager;
+    @In
+    private DelayManager delayManager;
 
     @ReceiveEvent(components = {CharcoalPitComponent.class})
     public void userActivatesCharcoalPit(ActivateEvent event, EntityRef entity) {
@@ -97,7 +99,7 @@ public class CharcoalPitAuthoritySystem extends BaseComponentSystem {
             location.setWorldPosition(new Vector3f(center.x - 0.5f, max.y + 1, center.z - 0.5f));
             entity.saveComponent(location);
 
-            entity.send(new AddDelayedActionEvent(PRODUCE_CHARCOAL_ACTION_PREFIX + charcoalCount, burnLength));
+            delayManager.addDelayedAction(entity, PRODUCE_CHARCOAL_ACTION_PREFIX + charcoalCount, burnLength);
         }
     }
 
