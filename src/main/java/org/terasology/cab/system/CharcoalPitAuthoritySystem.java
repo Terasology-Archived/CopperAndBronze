@@ -31,10 +31,9 @@ import org.terasology.logic.common.ActivateEvent;
 import org.terasology.logic.delay.DelayManager;
 import org.terasology.logic.delay.DelayedActionTriggeredEvent;
 import org.terasology.logic.inventory.InventoryComponent;
+import org.terasology.logic.inventory.InventoryManager;
 import org.terasology.logic.inventory.InventoryUtils;
 import org.terasology.logic.inventory.ItemComponent;
-import org.terasology.logic.inventory.action.GiveItemAction;
-import org.terasology.logic.inventory.action.RemoveItemAction;
 import org.terasology.logic.location.LocationComponent;
 import org.terasology.logic.particles.BlockParticleEffectComponent;
 import org.terasology.math.Vector3i;
@@ -57,6 +56,8 @@ public class CharcoalPitAuthoritySystem extends BaseComponentSystem {
     private EntityManager entityManager;
     @In
     private DelayManager delayManager;
+    @In
+    private InventoryManager inventoryManager;
 
     @ReceiveEvent(components = {CharcoalPitComponent.class})
     public void userActivatesCharcoalPit(ActivateEvent event, EntityRef entity) {
@@ -74,8 +75,7 @@ public class CharcoalPitAuthoritySystem extends BaseComponentSystem {
             for (int i = 0; i < charcoalPit.inputSlotCount; i++) {
                 EntityRef itemInSlot = InventoryUtils.getItemAt(entity, i);
                 if (itemInSlot.exists()) {
-                    RemoveItemAction removeAction = new RemoveItemAction(entity, itemInSlot, true);
-                    entity.send(removeAction);
+                    inventoryManager.removeItem(entity, entity, itemInSlot, true);
                 }
             }
 
@@ -120,9 +120,7 @@ public class CharcoalPitAuthoritySystem extends BaseComponentSystem {
                     ItemComponent item = charcoalItem.getComponent(ItemComponent.class);
                     item.stackCount = (byte) toAdd;
                     charcoalItem.saveComponent(item);
-                    GiveItemAction giveAction = new GiveItemAction(entity, charcoalItem, i);
-                    entity.send(giveAction);
-                    if (!giveAction.isConsumed()) {
+                    if (!inventoryManager.giveItem(entity, entity, charcoalItem, i)) {
                         charcoalItem.destroy();
                     } else {
                         count -= toAdd;
