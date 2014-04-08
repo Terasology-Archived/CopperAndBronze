@@ -139,7 +139,7 @@ public class RegisterCopperAndBronzeRecipes extends BaseComponentSystem {
             result.put(new Vector3i(max.x, max.y, min.z), blockManager.getBlock("Core:Brick:Engine:HalfSlopeCorner.FRONT"));
 
             // Chimney
-            result.put(new Vector3i(center.x, max.y, center.z), blockManager.getBlock("Core:Brick:Engine:PillarBase"));
+            result.put(new Vector3i(center.x, max.y, center.z), blockManager.getBlock("Core:Brick:StructuralResources:PillarBase"));
 
             return result;
         }
