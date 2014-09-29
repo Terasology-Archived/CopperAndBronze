@@ -41,5 +41,7 @@
                 "id" : "Fences",
                 "minVersion" : "0.1.0"
             }],
-    "isServerSideOnly" : false
+    "isServerSideOnly" : false,
+    "isGameplay" : "true",
+    "defaultWorldGenerator" : "WoodAndStone:throughoutTheAges"
 }
