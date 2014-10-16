@@ -31,14 +31,14 @@ import org.terasology.rendering.nui.widgets.UILoadBar;
 import org.terasology.was.ui.VerticalTextureProgressWidget;
 import org.terasology.was.ui.WorkstationScreenUtils;
 import org.terasology.workstation.component.WorkstationProcessingComponent;
-import org.terasology.workstation.ui.WorkstationUI;
+import org.terasology.workstation.ui.BaseWorkstationScreen;
 
 import java.util.List;
 
 /**
  * @author Marcin Sciesinski <marcins78@gmail.com>
  */
-public class MetalStationWindow extends CoreScreenLayer implements WorkstationUI {
+public class MetalStationWindow extends BaseWorkstationScreen {
 
     private InventoryGrid ingredientsInventory;
     private InventoryGrid toolsInventory;
