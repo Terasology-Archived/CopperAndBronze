@@ -2,8 +2,11 @@
     "BlockDropGrammar": {
         "blockDrops": ["2*Core:CobbleStone"]
     },
+    "InteractionTarget": {},
+    "InteractionScreen": {
+        "screen": "CopperAndBronze:MetalStation"
+    },
     "Workstation": {
-        "uiPrefab": "CopperAndBronze:MetalStation",
         "supportedProcessTypes": {
             "Machines:Furnace": true,
             "CopperAndBronze:BasicMetalcrafting": false,
