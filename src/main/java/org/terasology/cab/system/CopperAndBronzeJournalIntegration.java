@@ -66,8 +66,8 @@ public class CopperAndBronzeJournalIntegration extends BaseComponentSystem {
                 chapterHandler);
     }
 
-    @ReceiveEvent(components = {CharacterComponent.class})
-    public void playerPickedUpItem(InventorySlotChangedEvent event, EntityRef character) {
+    @ReceiveEvent
+    public void playerPickedUpItem(InventorySlotChangedEvent event, EntityRef character, CharacterComponent characterComponent) {
         CraftingStationIngredientComponent ingredientComponent = event.getNewItem().getComponent(CraftingStationIngredientComponent.class);
         if (ingredientComponent != null) {
             String ingredientType = ingredientComponent.type;

@@ -59,15 +59,14 @@ public class CharcoalPitAuthoritySystem extends BaseComponentSystem {
     @In
     private InventoryManager inventoryManager;
 
-    @ReceiveEvent(components = {CharcoalPitComponent.class})
-    public void userActivatesCharcoalPit(ActivateEvent event, EntityRef entity) {
+    @ReceiveEvent
+    public void userActivatesCharcoalPit(ActivateEvent event, EntityRef entity, CharcoalPitComponent charcoalPit) {
         entity.send(new OpenCharcoalPitRequest());
     }
 
-    @ReceiveEvent(components = {CharcoalPitComponent.class, BlockRegionComponent.class, InventoryComponent.class})
-    public void startBurningCharcoal(ProduceCharcoalRequest event, EntityRef entity) {
-        CharcoalPitComponent charcoalPit = entity.getComponent(CharcoalPitComponent.class);
-
+    @ReceiveEvent
+    public void startBurningCharcoal(ProduceCharcoalRequest event, EntityRef entity,
+                                     CharcoalPitComponent charcoalPit, InventoryComponent inventoryComponent) {
         int logCount = CharcoalPitUtils.getLogCount(entity);
 
         if (CharcoalPitUtils.canBurnCharcoal(logCount, entity)) {
@@ -92,22 +91,24 @@ public class CharcoalPitAuthoritySystem extends BaseComponentSystem {
             entity.addComponent(particles);
 
             BlockRegionComponent region = entity.getComponent(BlockRegionComponent.class);
-            Vector3f center = region.region.center();
-            Vector3i max = region.region.max();
+            if (region != null) {
+                Vector3f center = region.region.center();
+                Vector3i max = region.region.max();
 
-            LocationComponent location = entity.getComponent(LocationComponent.class);
-            location.setWorldPosition(new Vector3f(center.x - 0.5f, max.y + 1, center.z - 0.5f));
-            entity.saveComponent(location);
+                LocationComponent location = entity.getComponent(LocationComponent.class);
+                location.setWorldPosition(new Vector3f(center.x - 0.5f, max.y + 1, center.z - 0.5f));
+                entity.saveComponent(location);
+            }
 
             delayManager.addDelayedAction(entity, PRODUCE_CHARCOAL_ACTION_PREFIX + charcoalCount, burnLength);
         }
     }
 
-    @ReceiveEvent(components = {CharcoalPitComponent.class, BlockRegionComponent.class, InventoryComponent.class})
-    public void charcoalBurningFinished(DelayedActionTriggeredEvent event, EntityRef entity) {
+    @ReceiveEvent
+    public void charcoalBurningFinished(DelayedActionTriggeredEvent event, EntityRef entity,
+                                        CharcoalPitComponent charcoalPit, InventoryComponent inventoryComponent) {
         String actionId = event.getActionId();
         if (actionId.startsWith(PRODUCE_CHARCOAL_ACTION_PREFIX)) {
-            CharcoalPitComponent charcoalPit = entity.getComponent(CharcoalPitComponent.class);
 
             entity.removeComponent(BlockParticleEffectComponent.class);
 
