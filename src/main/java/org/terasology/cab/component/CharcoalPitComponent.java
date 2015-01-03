@@ -21,6 +21,7 @@ import org.terasology.entitySystem.Component;
  * @author Marcin Sciesinski <marcins78@gmail.com>
  */
 public class CharcoalPitComponent implements Component {
+    public long burnStartWorldTime;
     public long burnFinishWorldTime;
     public int minimumLogCount;
     public int maximumLogCount;

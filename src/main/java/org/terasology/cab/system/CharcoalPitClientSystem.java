@@ -51,7 +51,7 @@ public class CharcoalPitClientSystem extends BaseComponentSystem implements Upda
     @Override
     public void update(float delta) {
         long gameTimeInMs = time.getGameTimeInMs();
-        if (gameTimeInMs + 250 > lastUpdate) {
+        if (gameTimeInMs > lastUpdate + 250) {
             for (EntityRef charcoalPit : entityManager.getEntitiesWith(CharcoalPitComponent.class, BlockParticleEffectComponent.class)) {
                 BlockParticleEffectComponent particles = charcoalPit.getComponent(BlockParticleEffectComponent.class);
                 particles.spawnCount += 5;

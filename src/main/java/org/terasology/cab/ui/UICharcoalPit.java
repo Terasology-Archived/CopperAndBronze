@@ -28,6 +28,7 @@ import org.terasology.rendering.nui.UIWidget;
 import org.terasology.rendering.nui.layers.ingame.inventory.InventoryGrid;
 import org.terasology.rendering.nui.widgets.ActivateEventListener;
 import org.terasology.rendering.nui.widgets.UIButton;
+import org.terasology.rendering.nui.widgets.UILoadBar;
 
 /**
  * @author Marcin Sciesinski <marcins78@gmail.com>
@@ -37,6 +38,7 @@ public class UICharcoalPit extends CoreScreenLayer {
     private InventoryGrid input;
     private InventoryGrid output;
     private UIButton process;
+    private UILoadBar burningProgress;
 
     @Override
     public void initialise() {
@@ -49,6 +51,7 @@ public class UICharcoalPit extends CoreScreenLayer {
         player.setMaxCellCount(30);
 
         process = find("process", UIButton.class);
+        burningProgress = find("burningProgress", UILoadBar.class);
     }
 
     public void setCharcoalPit(final EntityRef entity) {
@@ -91,10 +94,13 @@ public class UICharcoalPit extends CoreScreenLayer {
             input.setVisible(false);
             process.setVisible(false);
             output.setVisible(false);
+            burningProgress.setVisible(true);
+            burningProgress.setValue(1f * (worldTime - charcoalPit.burnStartWorldTime) / (charcoalPit.burnFinishWorldTime - charcoalPit.burnStartWorldTime));
         } else {
             // It's not burning wood
             input.setVisible(true);
             output.setVisible(true);
+            burningProgress.setVisible(false);
 
             int logCount = CharcoalPitUtils.getLogCount(charcoalPitEntity);
 

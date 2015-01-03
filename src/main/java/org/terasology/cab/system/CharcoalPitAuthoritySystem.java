@@ -79,11 +79,11 @@ public class CharcoalPitAuthoritySystem extends BaseComponentSystem {
             }
 
             int charcoalCount = CharcoalPitUtils.getResultCharcoalCount(logCount, entity);
-
-            int burnLength = 5 * 60 * 1000;
+            int burnLength = logCount * 5 * 1000;
 
             // Set burn length
-            charcoalPit.burnFinishWorldTime = time.getGameTimeInMs() + burnLength;
+            charcoalPit.burnStartWorldTime = time.getGameTimeInMs();
+            charcoalPit.burnFinishWorldTime = charcoalPit.burnStartWorldTime + burnLength;
             entity.saveComponent(charcoalPit);
 
             Prefab prefab = prefabManager.getPrefab("CopperAndBronze:CharcoalPitSmoke");
