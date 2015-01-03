@@ -79,7 +79,7 @@ public class CharcoalPitAuthoritySystem extends BaseComponentSystem {
             }
 
             int charcoalCount = CharcoalPitUtils.getResultCharcoalCount(logCount, entity);
-            int burnLength = logCount * 5 * 1000;
+            int burnLength = 5 * 60 * 1000;
 
             // Set burn length
             charcoalPit.burnStartWorldTime = time.getGameTimeInMs();
