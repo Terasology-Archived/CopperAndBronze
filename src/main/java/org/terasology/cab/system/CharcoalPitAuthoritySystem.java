@@ -37,10 +37,9 @@ import org.terasology.logic.inventory.ItemComponent;
 import org.terasology.logic.location.LocationComponent;
 import org.terasology.logic.particles.BlockParticleEffectComponent;
 import org.terasology.math.Vector3i;
+import org.terasology.math.geom.Vector3f;
 import org.terasology.registry.In;
 import org.terasology.world.block.regions.BlockRegionComponent;
-
-import javax.vecmath.Vector3f;
 
 /**
  * @author Marcin Sciesinski <marcins78@gmail.com>

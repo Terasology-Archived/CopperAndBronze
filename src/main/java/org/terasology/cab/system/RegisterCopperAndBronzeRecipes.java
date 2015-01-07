@@ -16,6 +16,7 @@
 package org.terasology.cab.system;
 
 import com.google.common.base.Predicate;
+
 import org.terasology.cab.CopperAndBronze;
 import org.terasology.cab.component.CharcoalPitComponent;
 import org.terasology.core.logic.blockDropGrammar.BlockDropGrammarComponent;
@@ -26,6 +27,7 @@ import org.terasology.entitySystem.systems.RegisterSystem;
 import org.terasology.logic.inventory.InventoryComponent;
 import org.terasology.math.Region3i;
 import org.terasology.math.Vector3i;
+import org.terasology.math.geom.Vector3f;
 import org.terasology.multiBlock.Basic2DSizeFilter;
 import org.terasology.multiBlock.Basic3DSizeFilter;
 import org.terasology.multiBlock.BlockUriEntityFilter;
@@ -45,7 +47,6 @@ import org.terasology.world.block.Block;
 import org.terasology.world.block.BlockManager;
 import org.terasology.world.block.BlockUri;
 
-import javax.vecmath.Vector3f;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
