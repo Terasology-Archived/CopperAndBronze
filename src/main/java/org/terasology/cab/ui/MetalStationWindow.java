@@ -23,7 +23,7 @@ import org.terasology.heat.component.HeatProducerComponent;
 import org.terasology.heat.ui.ThermometerWidget;
 import org.terasology.logic.players.LocalPlayer;
 import org.terasology.registry.CoreRegistry;
-import org.terasology.rendering.nui.CoreScreenLayer;
+import org.terasology.rendering.nui.BaseInteractionScreen;
 import org.terasology.rendering.nui.databinding.Binding;
 import org.terasology.rendering.nui.layers.ingame.inventory.InventoryGrid;
 import org.terasology.rendering.nui.widgets.UIButton;
@@ -31,14 +31,13 @@ import org.terasology.rendering.nui.widgets.UILoadBar;
 import org.terasology.was.ui.VerticalTextureProgressWidget;
 import org.terasology.was.ui.WorkstationScreenUtils;
 import org.terasology.workstation.component.WorkstationProcessingComponent;
-import org.terasology.workstation.ui.BaseWorkstationScreen;
 
 import java.util.List;
 
 /**
  * @author Marcin Sciesinski <marcins78@gmail.com>
  */
-public class MetalStationWindow extends BaseWorkstationScreen {
+public class MetalStationWindow extends BaseInteractionScreen {
 
     private InventoryGrid ingredientsInventory;
     private InventoryGrid toolsInventory;
@@ -83,7 +82,7 @@ public class MetalStationWindow extends BaseWorkstationScreen {
     }
 
     @Override
-    public void initializeWorkstation(final EntityRef station) {
+    protected void initializeWithInteractionTarget(final EntityRef station) {
         WorkstationScreenUtils.setupInventoryGrid(station, ingredientsInventory, "INPUT");
         WorkstationScreenUtils.setupInventoryGrid(station, toolsInventory, "TOOL");
         WorkstationScreenUtils.setupInventoryGrid(station, upgrades, "UPGRADE");
