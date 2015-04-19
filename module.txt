@@ -27,7 +27,7 @@
             },
             {
                 "id" : "Core",
-                "minVersion" : "0.1.0"
+                "minVersion" : "0.53.1"
             },
             {
                 "id" : "WoodAndStone",
