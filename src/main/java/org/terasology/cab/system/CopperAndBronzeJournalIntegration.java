@@ -78,7 +78,7 @@ public class CopperAndBronzeJournalIntegration extends BaseComponentSystem {
                 createTimestampEntryProducer("I found Native Copper. Boy, am I lucky! This is a very rare find and is a pure source of copper. I should be able " +
                         "to build stronger tools using it in metal station."));
 
-        journalManager.registerJournalChapter(chapterId, Assets.getTexture("CopperAndBronze:CopperAndBronzeJournal"), "Copper and Bronze",
+        journalManager.registerJournalChapter(chapterId, Assets.getTexture("CopperAndBronze:CopperAndBronzeJournal").get(), "Copper and Bronze",
                 chapterHandler);
     }
 

@@ -1,6 +1,6 @@
 {
     "id" : "CopperAndBronze",
-    "version" : "0.1.0",
+    "version" : "0.1.1-SNAPSHOT",
     "author" : "Marcin Sciesinski <marcins78@gmail.com>",
     "displayName" : "Copper and Bronze",
     "description" : "Improve your tools to copper, bronze and brass!",
@@ -23,11 +23,11 @@
             },
             {
                 "id" : "AnotherWorld",
-                "minVersion" : "0.1.0"
+                "minVersion" : "0.2.0"
             },
             {
                 "id" : "Core",
-                "minVersion" : "0.53.1"
+                "minVersion" : "0.54.0"
             },
             {
                 "id" : "WoodAndStone",

@@ -75,7 +75,7 @@ public class RegisterCopperAndBronzeRecipes extends BaseComponentSystem {
         multiBlockRecipeRegistry.addMultiBlockFormItemRecipe(
                 new UniformMultiBlockFormItemRecipe(
                         new ToolTypeEntityFilter("hammer"), new UseOnTopFilter(),
-                        new BlockUriEntityFilter(new BlockUri("Core", "CobbleStone")), new Basic3DSizeFilter(2, 1, 1, 1),
+                        new BlockUriEntityFilter(new BlockUri("Core:CobbleStone")), new Basic3DSizeFilter(2, 1, 1, 1),
                         "CopperAndBronze:BasicMetalcrafting",
                         new UniformBlockReplacementCallback<Void>(blockManager.getBlock("CopperAndBronze:BasicMetalStation"))));
     }
@@ -83,15 +83,15 @@ public class RegisterCopperAndBronzeRecipes extends BaseComponentSystem {
     private void addMultiblockRecipes() {
         multiBlockRecipeRegistry.addMultiBlockFormItemRecipe(
                 new SurroundMultiBlockFormItemRecipe(
-                        new ToolTypeEntityFilter("hammer"), new BlockUriEntityFilter(new BlockUri("Core", "Brick")),
-                        new BlockUriEntityFilter(new BlockUri("Engine", "Air")), new AllowableCharcoalPitSize(),
+                        new ToolTypeEntityFilter("hammer"), new BlockUriEntityFilter(new BlockUri("Core:Brick")),
+                        new BlockUriEntityFilter(new BlockUri("Engine:Air")), new AllowableCharcoalPitSize(),
                         new AnyActivityFilter(), "CopperAndBronze:CharcoalPit", new CharcoalPitCallback()));
 
         final LayeredMultiBlockFormItemRecipe bloomeryRecipe = new LayeredMultiBlockFormItemRecipe(
                 new ToolTypeEntityFilter("hammer"), new Basic2DSizeFilter(2, 2), new AnyActivityFilter(),
                 "CopperAndBronze:Bloomery", null);
-        bloomeryRecipe.addLayer(1, 1, new BlockUriEntityFilter(new BlockUri("CopperAndBronze", "CopperStructure")));
-        bloomeryRecipe.addLayer(2, 2, new BlockUriEntityFilter(new BlockUri("Core", "Brick")));
+        bloomeryRecipe.addLayer(1, 1, new BlockUriEntityFilter(new BlockUri("CopperAndBronze:CopperStructure")));
+        bloomeryRecipe.addLayer(2, 2, new BlockUriEntityFilter(new BlockUri("Core:Brick")));
         multiBlockRecipeRegistry.addMultiBlockFormItemRecipe(bloomeryRecipe);
     }
 
