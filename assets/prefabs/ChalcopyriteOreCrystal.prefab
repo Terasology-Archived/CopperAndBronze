@@ -1,7 +1,7 @@
 {
     "parent": "engine:iconItem",
     "Item": {
-        "icon": "CopperAndBronze:bronze.ChalcopyriteOreCrystal",
+        "icon": "CopperAndBronze:bronze#ChalcopyriteOreCrystal",
         "renderWithIcon": true,
         "stackId": "CopperAndBronze:ChalcopyriteOreCrystal"
     },

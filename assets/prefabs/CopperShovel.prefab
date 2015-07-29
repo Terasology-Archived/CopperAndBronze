@@ -1,7 +1,7 @@
 {
     "parent": "engine:iconItem",
     "Item": {
-        "icon": "CopperAndBronze:bronze.CopperShovel",
+        "icon": "CopperAndBronze:bronze#CopperShovel",
         "renderWithIcon": true,
         "damageType": "shovelDamage"
     },
