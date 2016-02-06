@@ -2,7 +2,6 @@
     "parent": "engine:iconItem",
     "Item": {
         "icon": "CopperAndBronze:bronze#CopperNugget",
-        "renderWithIcon": true,
         "stackId": "CopperAndBronze:CopperNugget"
     },
     "DisplayName": {
