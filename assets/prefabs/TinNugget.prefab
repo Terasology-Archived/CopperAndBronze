@@ -1,0 +1,13 @@
+{
+    "parent": "engine:iconItem",
+    "Item": {
+        "icon": "CopperAndBronze:bronze#CopperNugget",
+        "stackId": "CopperAndBronze:TinNugget"
+    },
+    "DisplayName": {
+        "name": "Tin Nugget"
+    },
+    "CraftingStationIngredient": {
+        "type": "CopperAndBronze:tinNugget"
+    }
+}

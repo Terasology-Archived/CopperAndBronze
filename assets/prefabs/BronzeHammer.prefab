@@ -1,15 +1,15 @@
 {
     "parent": "engine:iconItem",
     "Item": {
-        "icon": "CopperAndBronze:bronze#CopperHammer",
+        "icon": "CopperAndBronze:bronze#BronzeHammer",
         "damageType": "WorkstationCrafting:hammerDamage"
     },
     "DisplayName": {
-        "name": "Copper Hammer"
+        "name": "Bronze Hammer"
     },
     "Durability": {
-        "durability": 250,
-        "maxDurability": 250
+        "durability": 300,
+        "maxDurability": 300
     },
     "CraftingStationTool": {
         "type": ["hammer"]

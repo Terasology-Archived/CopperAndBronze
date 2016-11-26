@@ -1,6 +1,6 @@
 {
     "ProcessDefinition": {
-        "processType": "CopperAndBronze:BasicSmithingProcess"
+        "processType": "Smithing:BasicSmithingProcess"
     },
     "CraftingStationRecipe": {
         "recipeId": "Materials|CopperAndBronze:CopperNails",

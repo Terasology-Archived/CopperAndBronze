@@ -16,7 +16,7 @@
 package org.terasology.cab.system;
 
 import org.terasology.utilities.Assets;
-import org.terasology.crafting.component.CraftingStationIngredientComponent;
+import org.terasology.workstationCrafting.component.CraftingStationIngredientComponent;
 import org.terasology.entitySystem.entity.EntityRef;
 import org.terasology.entitySystem.event.ReceiveEvent;
 import org.terasology.entitySystem.systems.BaseComponentSystem;
@@ -96,16 +96,16 @@ public class CopperAndBronzeJournalIntegration extends BaseComponentSystem {
         CraftingStationIngredientComponent ingredientComponent = event.getNewItem().getComponent(CraftingStationIngredientComponent.class);
         if (ingredientComponent != null) {
             String ingredientType = ingredientComponent.type;
-            if (ingredientType.equals("CopperAndBronze:chalcopyriteCrystal") &&
-                    !(journalManager.hasEntry(character, chapterId, "chalcopyriteCrystalAndStation")
+            if (ingredientType.equals("CopperAndBronze:chalcopyriteCrystal")
+                    && !(journalManager.hasEntry(character, chapterId, "chalcopyriteCrystalAndStation")
                             || journalManager.hasEntry(character, chapterId, "chalcopyriteCrystal"))) {
                 if (journalManager.hasEntry(character, chapterId, "nativeCopperAndStation")) {
                     character.send(new DiscoveredNewJournalEntry(chapterId, "chalcopyriteCrystal"));
                 } else {
                     character.send(new DiscoveredNewJournalEntry(chapterId, "chalcopyriteCrystalAndStation"));
                 }
-            } else if (ingredientType.equals("CopperAndBronze:copperNugget") &&
-                    !(journalManager.hasEntry(character, chapterId, "nativeCopperAndStation")
+            } else if (ingredientType.equals("CopperAndBronze:copperNugget")
+                    && !(journalManager.hasEntry(character, chapterId, "nativeCopperAndStation")
                             || journalManager.hasEntry(character, chapterId, "nativeCopper"))) {
                 if (journalManager.hasEntry(character, chapterId, "chalcopyriteCrystalAndStation")) {
                     character.send(new DiscoveredNewJournalEntry(chapterId, "nativeCopper"));

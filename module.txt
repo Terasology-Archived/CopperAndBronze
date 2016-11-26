@@ -1,9 +1,9 @@
 {
     "id" : "CopperAndBronze",
-    "version" : "0.1.2-SNAPSHOT",
-    "author" : "Marcin Sciesinski <marcins78@gmail.com>",
+    "version" : "1.1.0-SNAPSHOT",
+    "author" : "Marcin Sciesinski <marcins78@gmail.com>, XTariq",
     "displayName" : "Copper and Bronze",
-    "description" : "Improve your tools to copper, bronze and brass!",
+    "description" : "Improve your tools to copper, bronze, and brass!",
     "dependencies" : [
             {
                 "id" : "GrowingFlora",
@@ -11,10 +11,6 @@
             },
             {
                 "id" : "PlantPack",
-                "minVersion" : "1.0.0"
-            },
-            {
-                "id" : "MultiBlock",
                 "minVersion" : "1.0.0"
             },
             {
@@ -30,12 +26,12 @@
                 "minVersion" : "1.0.0"
             },
             {
-                "id" : "WoodAndStone",
+                "id" : "WorkstationCrafting",
                 "minVersion" : "0.1.0"
             },
             {
-                "id" : "Workstation",
-                "minVersion" : "1.0.0"
+                "id" : "Smithing",
+                "minVersion" : "0.1.0"
             },
             {
                 "id" : "Fences",
