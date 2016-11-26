@@ -18,9 +18,6 @@ package org.terasology.cab.event;
 import org.terasology.entitySystem.event.Event;
 import org.terasology.network.ServerEvent;
 
-/**
- * @author Marcin Sciesinski <marcins78@gmail.com>
- */
 @ServerEvent
 public class ProduceCharcoalRequest implements Event {
 }

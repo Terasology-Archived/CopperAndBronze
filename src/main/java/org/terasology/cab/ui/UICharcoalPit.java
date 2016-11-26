@@ -30,9 +30,6 @@ import org.terasology.rendering.nui.widgets.ActivateEventListener;
 import org.terasology.rendering.nui.widgets.UIButton;
 import org.terasology.rendering.nui.widgets.UILoadBar;
 
-/**
- * @author Marcin Sciesinski <marcins78@gmail.com>
- */
 public class UICharcoalPit extends CoreScreenLayer {
     private EntityRef charcoalPitEntity;
     private InventoryGrid input;

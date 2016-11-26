@@ -9,7 +9,7 @@
     "Workstation": {
         "supportedProcessTypes": {
             "Machines:Furnace": true,
-            "CopperAndBronze:BasicMetalcrafting": false,
+            "CopperAndBronze:BasicSmithingProcess": false,
             "Crafting:UpgradeCraftingWorkstation": false
         }
     },

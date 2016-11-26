@@ -15,10 +15,8 @@
  */
 package org.terasology.cab;
 
-/**
- * @author Marcin Sciesinski <marcins78@gmail.com>
- */
 public class CopperAndBronze {
-    public static final String BASIC_METALCRAFTING_PROCESS_TYPE = "CopperAndBronze:BasicMetalcrafting";
+    public static final String BASIC_SMITHING_PROCESS = "CopperAndBronze:BasicSmithingProcess";
+    public static final String STANDARD_SMITHING_PROCESS = "CopperAndBronze:StandardSmithingProcess";
 
 }

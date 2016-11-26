@@ -1,6 +1,6 @@
 {
     "ProcessDefinition": {
-        "processType": "CopperAndBronze:BasicMetalcrafting"
+        "processType": "CopperAndBronze:BasicSmithingProcess"
     },
     "CraftingStationRecipe": {
         "recipeId": "Tools|CopperAndBronze:CopperHammer",

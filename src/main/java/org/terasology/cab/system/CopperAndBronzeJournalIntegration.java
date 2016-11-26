@@ -37,9 +37,6 @@ import org.terasology.rendering.nui.widgets.browser.ui.style.ParagraphRenderStyl
 import java.util.Arrays;
 import java.util.Collection;
 
-/**
- * @author Marcin Sciesinski <marcins78@gmail.com>
- */
 @RegisterSystem
 public class CopperAndBronzeJournalIntegration extends BaseComponentSystem {
     @In
@@ -71,7 +68,7 @@ public class CopperAndBronzeJournalIntegration extends BaseComponentSystem {
 
         chapterHandler.registerJournalEntry("nativeCopperAndStation",
                 createTimestampEntryProducer("I found Native Copper. Boy, am I lucky! This is a very rare find and is a pure source of copper. I should be able " +
-                        "to build stronger tools using it in metal station.\n\nTo build the station, I need two " +
+                        "to build stronger tools using it in metal station. To build the station, I need two " +
                         "Cobblestone blocks side-by-side and use my hammer on them as with any previous stations."));
 
         chapterHandler.registerJournalEntry("nativeCopper",

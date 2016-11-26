@@ -9,6 +9,6 @@
 
         "recipeComponents": ["3*CopperAndBronze:copperStructure"],
 
-        "resultBlockUri": "WoodAndStone:StandardMetalStation"
+        "resultBlockUri": "CopperAndBronze:StandardMetalStation"
     }
 }

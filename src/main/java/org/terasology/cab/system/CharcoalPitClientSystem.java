@@ -30,9 +30,6 @@ import org.terasology.logic.particles.BlockParticleEffectComponent;
 import org.terasology.registry.In;
 import org.terasology.rendering.nui.NUIManager;
 
-/**
- * @author Marcin Sciesinski <marcins78@gmail.com>
- */
 @RegisterSystem(value = RegisterMode.CLIENT)
 public class CharcoalPitClientSystem extends BaseComponentSystem implements UpdateSubscriberSystem {
     @In

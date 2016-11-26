@@ -17,8 +17,5 @@ package org.terasology.cab.event;
 
 import org.terasology.network.NetworkEvent;
 
-/**
- * @author Marcin Sciesinski <marcins78@gmail.com>
- */
 public class OpenCharcoalPitRequest extends NetworkEvent {
 }

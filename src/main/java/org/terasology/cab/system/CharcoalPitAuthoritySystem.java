@@ -41,9 +41,6 @@ import org.terasology.math.geom.Vector3i;
 import org.terasology.registry.In;
 import org.terasology.world.block.regions.BlockRegionComponent;
 
-/**
- * @author Marcin Sciesinski <marcins78@gmail.com>
- */
 @RegisterSystem(value = RegisterMode.AUTHORITY)
 public class CharcoalPitAuthoritySystem extends BaseComponentSystem {
     public static final String PRODUCE_CHARCOAL_ACTION_PREFIX = "CopperAndBronze:ProduceCharcoal|";

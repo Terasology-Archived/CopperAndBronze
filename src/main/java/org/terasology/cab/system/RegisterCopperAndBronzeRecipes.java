@@ -50,9 +50,6 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
-/**
- * @author Marcin Sciesinski <marcins78@gmail.com>
- */
 @RegisterSystem
 public class RegisterCopperAndBronzeRecipes extends BaseComponentSystem {
     @In
@@ -64,7 +61,8 @@ public class RegisterCopperAndBronzeRecipes extends BaseComponentSystem {
 
     @Override
     public void initialise() {
-        workstationRegistry.registerProcessFactory(CopperAndBronze.BASIC_METALCRAFTING_PROCESS_TYPE, new CraftingWorkstationProcessFactory());
+        workstationRegistry.registerProcessFactory(CopperAndBronze.BASIC_SMITHING_PROCESS, new CraftingWorkstationProcessFactory());
+        workstationRegistry.registerProcessFactory(CopperAndBronze.STANDARD_SMITHING_PROCESS, new CraftingWorkstationProcessFactory());
 
         addWorkstationRecipes();
 

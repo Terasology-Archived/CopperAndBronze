@@ -16,6 +16,9 @@
 package org.terasology.cab.ui;
 
 import org.terasology.cab.CopperAndBronze;
+import org.terasology.crafting.component.CraftingStationUpgradeRecipeComponent;
+import org.terasology.crafting.system.CraftingWorkstationUpgradeProcess;
+import org.terasology.crafting.system.recipe.workstation.UpgradeRecipe;
 import org.terasology.crafting.ui.workstation.StationAvailableRecipesWidget;
 import org.terasology.engine.Time;
 import org.terasology.entitySystem.entity.EntityRef;
@@ -24,19 +27,23 @@ import org.terasology.heat.ui.ThermometerWidget;
 import org.terasology.logic.players.LocalPlayer;
 import org.terasology.registry.CoreRegistry;
 import org.terasology.rendering.nui.BaseInteractionScreen;
+import org.terasology.rendering.nui.NUIManager;
+import org.terasology.rendering.nui.UIWidget;
 import org.terasology.rendering.nui.databinding.Binding;
 import org.terasology.rendering.nui.layers.ingame.inventory.InventoryGrid;
+import org.terasology.rendering.nui.widgets.ActivateEventListener;
 import org.terasology.rendering.nui.widgets.UIButton;
 import org.terasology.rendering.nui.widgets.UILoadBar;
 import org.terasology.was.ui.VerticalTextureProgressWidget;
 import org.terasology.was.ui.WorkstationScreenUtils;
 import org.terasology.workstation.component.WorkstationProcessingComponent;
+import org.terasology.workstation.event.WorkstationProcessRequest;
+import org.terasology.workstation.process.WorkstationProcess;
+import org.terasology.workstation.system.WorkstationRegistry;
 
+import java.util.Collections;
 import java.util.List;
 
-/**
- * @author Marcin Sciesinski <marcins78@gmail.com>
- */
 public class MetalStationWindow extends BaseInteractionScreen {
 
     private InventoryGrid ingredientsInventory;
@@ -49,6 +56,10 @@ public class MetalStationWindow extends BaseInteractionScreen {
     private UILoadBar craftingProgress;
     private InventoryGrid upgrades;
     private UIButton upgradeButton;
+
+    private EntityRef workstation;
+    private String upgradeRecipeDisplayed;
+    private String matchingUpgradeRecipe;
 
     @Override
     public void initialise() {
@@ -83,6 +94,8 @@ public class MetalStationWindow extends BaseInteractionScreen {
 
     @Override
     protected void initializeWithInteractionTarget(final EntityRef station) {
+        workstation = station;
+
         WorkstationScreenUtils.setupInventoryGrid(station, ingredientsInventory, "INPUT");
         WorkstationScreenUtils.setupInventoryGrid(station, toolsInventory, "TOOL");
         WorkstationScreenUtils.setupInventoryGrid(station, upgrades, "UPGRADE");
@@ -90,6 +103,16 @@ public class MetalStationWindow extends BaseInteractionScreen {
         WorkstationScreenUtils.setupInventoryGrid(station, fuelInput, "FUEL");
 
         WorkstationScreenUtils.setupTemperatureWidget(station, temperature, 20f);
+
+        upgradeButton.subscribe(
+                new ActivateEventListener() {
+                    @Override
+                    public void onActivated(UIWidget widget) {
+                        EntityRef character = CoreRegistry.get(LocalPlayer.class).getCharacterEntity();
+                        character.send(new WorkstationProcessRequest(station, matchingUpgradeRecipe));
+                    }
+                });
+        upgradeButton.setVisible(false);
 
         burn.bindValue(
                 new Binding<Float>() {
@@ -124,7 +147,7 @@ public class MetalStationWindow extends BaseInteractionScreen {
                         if (processing == null) {
                             return false;
                         }
-                        WorkstationProcessingComponent.ProcessDef heatingProcess = processing.processes.get(CopperAndBronze.BASIC_METALCRAFTING_PROCESS_TYPE);
+                        WorkstationProcessingComponent.ProcessDef heatingProcess = processing.processes.get(CopperAndBronze.BASIC_SMITHING_PROCESS);
                         return heatingProcess != null;
                     }
 
@@ -140,7 +163,7 @@ public class MetalStationWindow extends BaseInteractionScreen {
                         if (processing == null) {
                             return 1f;
                         }
-                        WorkstationProcessingComponent.ProcessDef heatingProcess = processing.processes.get(CopperAndBronze.BASIC_METALCRAFTING_PROCESS_TYPE);
+                        WorkstationProcessingComponent.ProcessDef heatingProcess = processing.processes.get(CopperAndBronze.BASIC_SMITHING_PROCESS);
                         if (heatingProcess == null) {
                             return 1f;
                         }
@@ -154,6 +177,52 @@ public class MetalStationWindow extends BaseInteractionScreen {
                     public void set(Float value) {
                     }
                 });
+    }
+
+    @Override
+    public void update(float delta) {
+        if (!workstation.exists()) {
+            CoreRegistry.get(NUIManager.class).closeScreen(this);
+            return;
+        }
+        super.update(delta);
+
+        WorkstationRegistry craftingRegistry = CoreRegistry.get(WorkstationRegistry.class);
+
+        matchingUpgradeRecipe = getMatchingUpgradeRecipe(craftingRegistry);
+        if (!isSame(matchingUpgradeRecipe, upgradeRecipeDisplayed)) {
+            if (upgradeRecipeDisplayed != null) {
+                upgradeButton.setVisible(false);
+            }
+            if (matchingUpgradeRecipe != null) {
+                upgradeButton.setVisible(true);
+            }
+            upgradeRecipeDisplayed = matchingUpgradeRecipe;
+        }
+
+    }
+
+    private boolean isSame(String recipe1, String recipe2) {
+        if (recipe1 == null && recipe2 == null) {
+            return true;
+        }
+        if (recipe1 == null || recipe2 == null) {
+            return false;
+        }
+        return recipe1.equals(recipe2);
+    }
+
+    private String getMatchingUpgradeRecipe(WorkstationRegistry craftingRegistry) {
+        for (WorkstationProcess workstationProcess : craftingRegistry.getWorkstationProcesses(Collections.singleton(CraftingStationUpgradeRecipeComponent.PROCESS_TYPE))) {
+            if (workstationProcess instanceof CraftingWorkstationUpgradeProcess) {
+                UpgradeRecipe upgradeRecipe = ((CraftingWorkstationUpgradeProcess) workstationProcess).getUpgradeRecipe();
+                final UpgradeRecipe.UpgradeResult upgradeResult = upgradeRecipe.getMatchingUpgradeResult(workstation);
+                if (upgradeResult != null) {
+                    return workstationProcess.getId();
+                }
+            }
+        }
+        return null;
     }
 
     @Override

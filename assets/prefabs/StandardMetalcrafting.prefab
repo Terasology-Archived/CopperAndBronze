@@ -9,8 +9,8 @@
     "Workstation": {
         "supportedProcessTypes": {
             "Machines:Furnace": true,
-            "CopperAndBronze:BasicMetalcrafting": false,
-            "CopperAndBronze:StandardMetalcrafting": false,
+            "CopperAndBronze:BasicSmithingProcess": false,
+            "CopperAndBronze:StandardSmithingProcess": false,
             "Crafting:UpgradeCraftingWorkstation": false
         }
     },
@@ -39,7 +39,7 @@
         }
     },
     "CraftingStation": {
-        "type": "CopperAndBronze:BasicMetalcrafting",
+        "type": "CopperAndBronze:StandardMetalcrafting",
         "workstationUITexture": "CopperAndBronze:BasicMetalworking"
     },
     "Inventory": {

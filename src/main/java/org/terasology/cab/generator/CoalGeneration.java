@@ -23,9 +23,6 @@ import org.terasology.registry.CoreRegistry;
 import org.terasology.world.block.BlockManager;
 import org.terasology.world.generator.plugin.RegisterPlugin;
 
-/**
- * @author Marcin Sciesinski <marcins78@gmail.com>
- */
 @RegisterPlugin
 public class CoalGeneration extends PocketStructureDefinition implements OreDefinition {
     public CoalGeneration() {
