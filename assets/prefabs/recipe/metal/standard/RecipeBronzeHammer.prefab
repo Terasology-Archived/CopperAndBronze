@@ -5,7 +5,7 @@
     "CraftingStationRecipe": {
         "recipeId": "Tools|CopperAndBronze:BronzeHammer",
 
-        "recipeComponents": ["1*CopperAndBronze:copperNugget", "1*CopperAndBronze:tinNugget", "1*WorkstationCrafting:stick"],
+        "recipeComponents": ["1*Smithing:copperNugget", "1*Smithing:tinNugget", "1*WorkstationCrafting:stick"],
         "recipeTools": ["1*hammer"],
 
         "requiredTemperature": 850,
