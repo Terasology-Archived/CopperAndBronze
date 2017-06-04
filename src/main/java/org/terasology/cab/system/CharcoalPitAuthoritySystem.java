@@ -19,6 +19,7 @@ import org.terasology.cab.component.CharcoalPitComponent;
 import org.terasology.cab.event.OpenCharcoalPitRequest;
 import org.terasology.cab.event.ProduceCharcoalRequest;
 import org.terasology.engine.Time;
+import org.terasology.entitySystem.Component;
 import org.terasology.entitySystem.entity.EntityManager;
 import org.terasology.entitySystem.entity.EntityRef;
 import org.terasology.entitySystem.event.ReceiveEvent;
@@ -35,9 +36,9 @@ import org.terasology.logic.inventory.InventoryManager;
 import org.terasology.logic.inventory.InventoryUtils;
 import org.terasology.logic.inventory.ItemComponent;
 import org.terasology.logic.location.LocationComponent;
-import org.terasology.logic.particles.BlockParticleEffectComponent;
 import org.terasology.math.geom.Vector3f;
 import org.terasology.math.geom.Vector3i;
+import org.terasology.particles.components.ParticleEmitterComponent;
 import org.terasology.registry.In;
 import org.terasology.world.block.regions.BlockRegionComponent;
 
@@ -86,8 +87,9 @@ public class CharcoalPitAuthoritySystem extends BaseComponentSystem {
             entity.saveComponent(charcoalPit);
 
             Prefab prefab = prefabManager.getPrefab("CopperAndBronze:CharcoalPitSmoke");
-            BlockParticleEffectComponent particles = prefab.getComponent(BlockParticleEffectComponent.class);
-            entity.addComponent(particles);
+            for (Component c : prefab.iterateComponents()) {
+                entity.addComponent(c);
+            }
 
             BlockRegionComponent region = entity.getComponent(BlockRegionComponent.class);
             if (region != null) {
@@ -109,7 +111,7 @@ public class CharcoalPitAuthoritySystem extends BaseComponentSystem {
         String actionId = event.getActionId();
         if (actionId.startsWith(PRODUCE_CHARCOAL_ACTION_PREFIX)) {
 
-            entity.removeComponent(BlockParticleEffectComponent.class);
+            entity.removeComponent(ParticleEmitterComponent.class);
 
             int count = Integer.parseInt(actionId.substring(PRODUCE_CHARCOAL_ACTION_PREFIX.length()));
             for (int i = charcoalPit.inputSlotCount; i < charcoalPit.inputSlotCount + charcoalPit.outputSlotCount; i++) {
