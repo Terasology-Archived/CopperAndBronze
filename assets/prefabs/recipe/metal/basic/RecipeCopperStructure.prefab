@@ -1,16 +1,16 @@
 {
     "ProcessDefinition": {
-        "processType": "CopperAndBronze:BasicMetalcrafting"
+        "processType": "Smithing:BasicSmithingProcess"
     },
     "CraftingStationRecipe": {
         "recipeId": "Materials|CopperAndBronze:CopperStructure",
 
-        "recipeComponents": ["6*CopperAndBronze:copperNugget"],
+        "recipeComponents": ["6*Smithing:copperNugget"],
         "recipeTools": ["2*hammer"],
 
         "requiredTemperature": 850,
         "processingDuration": 5000,
 
-        "blockResult": "1*CopperAndBronze:CopperStructure"
+        "blockResult": "1*Smithing:CopperStructure"
     }
 }

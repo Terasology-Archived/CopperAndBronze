@@ -1,0 +1,17 @@
+{
+    "parent": "engine:iconItem",
+    "Item": {
+        "icon": "CopperAndBronze:bronze#BronzeAxe",
+        "damageType": "axeDamage"
+    },
+    "DisplayName": {
+        "name": "Bronze Axe"
+    },
+    "Durability": {
+        "durability": 300,
+        "maxDurability": 300
+    },
+    "CraftingStationTool": {
+        "type": ["axe"]
+    }
+}

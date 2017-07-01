@@ -10,6 +10,6 @@
     "HeatProcessed": {
         "heatRequired": 850,
         "processingTime": 5000,
-        "itemResult": "1*CopperAndBronze:CopperNugget"
+        "itemResult": "1*Smithing:CopperNugget"
     }
 }

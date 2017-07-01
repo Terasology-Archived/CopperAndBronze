@@ -1,0 +1,16 @@
+{
+    "ProcessDefinition": {
+        "processType": "Smithing:StandardSmithingProcess"
+    },
+    "CraftingStationRecipe": {
+        "recipeId": "Tools|CopperAndBronze:BronzeHammer",
+
+        "recipeComponents": ["1*Smithing:copperNugget", "1*Smithing:tinNugget", "1*WorkstationCrafting:stick"],
+        "recipeTools": ["1*hammer"],
+
+        "requiredTemperature": 850,
+        "processingDuration": 3000,
+
+        "itemResult": "1*CopperAndBronze:BronzeHammer"
+    }
+}

@@ -1,6 +1,6 @@
 {
     "basedOn": "core:mineral",
     "entity": {
-        "prefab": "CopperAndBronze:BituminousCoalOre"
+        "prefab": "CopperAndBronze:NativeTin"
     }
 }

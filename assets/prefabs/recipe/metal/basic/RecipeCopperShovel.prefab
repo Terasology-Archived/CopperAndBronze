@@ -1,11 +1,11 @@
 {
     "ProcessDefinition": {
-        "processType": "CopperAndBronze:BasicMetalcrafting"
+        "processType": "Smithing:BasicSmithingProcess"
     },
     "CraftingStationRecipe": {
         "recipeId": "Tools|CopperAndBronze:CopperShovel",
 
-        "recipeComponents": ["1*CopperAndBronze:copperNugget", "1*WoodAndStone:stick"],
+        "recipeComponents": ["1*Smithing:copperNugget", "1*WorkstationCrafting:stick"],
         "recipeTools": ["1*hammer"],
 
         "requiredTemperature": 850,

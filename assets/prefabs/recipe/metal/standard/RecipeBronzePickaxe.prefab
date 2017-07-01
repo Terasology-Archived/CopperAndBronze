@@ -3,14 +3,14 @@
         "processType": "Smithing:BasicSmithingProcess"
     },
     "CraftingStationRecipe": {
-        "recipeId": "Tools|CopperAndBronze:CopperHammer",
+        "recipeId": "Tools|CopperAndBronze:BronzePickaxe",
 
-        "recipeComponents": ["1*Smithing:copperNugget", "1*WorkstationCrafting:stick"],
+        "recipeComponents": ["1*Smithing:copperNugget", , "1*Smithing:tinNugget", "1*WorkstationCrafting:stick"],
         "recipeTools": ["1*hammer"],
 
         "requiredTemperature": 850,
         "processingDuration": 3000,
 
-        "itemResult": "1*CopperAndBronze:CopperHammer"
+        "itemResult": "1*CopperAndBronze:BronzePickaxe"
     }
 }

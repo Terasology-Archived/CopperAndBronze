@@ -1,11 +1,11 @@
 {
     "ProcessDefinition": {
-        "processType": "CopperAndBronze:BasicMetalcrafting"
+        "processType": "Smithing:BasicSmithingProcess"
     },
     "CraftingStationRecipe": {
         "recipeId": "Materials|CopperAndBronze:CopperNails",
 
-        "recipeComponents": ["1*CopperAndBronze:copperNugget"],
+        "recipeComponents": ["1*Smithing:copperNugget"],
         "recipeTools": ["1*hammer"],
 
         "itemResult": "4*CopperAndBronze:CopperNails"

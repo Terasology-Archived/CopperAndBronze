@@ -1,11 +1,11 @@
 {
     "ProcessDefinition": {
-        "processType": "WoodAndStone:StandardWoodcrafting"
+        "processType": "WorkstationCrafting:StandardWoodcraftingProcess"
     },
     "CraftingStationRecipe": {
         "recipeId": "Building|Core:Door",
 
-        "recipeComponents": ["4*WoodAndStone:plank", "1*CopperAndBronze:nail"],
+        "recipeComponents": ["4*WorkstationCrafting:plank", "1*CopperAndBronze:nail"],
         "recipeTools": ["1*hammer"],
 
         "itemResult": "1*Core:Door"

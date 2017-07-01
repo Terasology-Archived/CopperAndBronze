@@ -5,11 +5,11 @@
         "tileSize": [64, 64],
         "gridDimensions": [8, 8],
         "tileNames": [
-            "ChalcopyriteOreCrystal", "ChalcopyriteCrystalDust", "CopperNugget", "", "", "", "", "",
+            "ChalcopyriteOreCrystal", "ChalcopyriteCrystalDust", "CopperNugget", "TinNugget", "", "", "", "",
             "Coal", "Charcoal", "", "", "", "", "", "",
             "CopperNails", "", "", "", "", "", "", "",
             "", "", "", "", "", "", "", "",
-            "CopperAxe", "CopperHammer", "CopperShovel", "", "", "", "", "",
+            "CopperAxe", "CopperHammer", "CopperShovel", "CopperPickaxe", "", "", "", "",
             "BronzeAxe", "BronzeHammer", "BronzeShovel", "BronzePickaxe", "", "", "", "",
             "", "", "", "", "", "", "", "",
             "", "", "", "", "", "", "", ""
