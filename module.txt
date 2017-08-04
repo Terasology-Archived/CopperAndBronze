@@ -31,7 +31,7 @@
             },
             {
                 "id" : "Smithing",
-                "minVersion" : "0.1.0"
+                "minVersion" : "1.0.0"
             },
             {
                 "id" : "Fences",
