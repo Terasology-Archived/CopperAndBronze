@@ -1,6 +1,6 @@
 {
     "attachmentAllowed": false,
-    "rotation": "horizontal",
+    "family": "horizontal",
     "tiles": {
         "sides": "Core:ChestSides",
         "front": "Core:ChestFront",
