@@ -58,6 +58,6 @@
     },
     "InteractionTarget": {},
     "InteractionScreen": {
-        "screen": "core:containerScreen"
+        "screen": "inventory:containerScreen"
     }
 }
