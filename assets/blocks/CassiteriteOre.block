@@ -1,6 +1,6 @@
 {
-    "basedOn": "core:mineral",
+    "basedOn": "CoreAssets:mineral",
     "entity": {
-        "prefab": "CopperAndBronze:Casiterite"
+        "prefab": "CopperAndBronze:Cassiterite"
     }
 }

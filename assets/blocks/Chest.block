@@ -2,9 +2,9 @@
     "attachmentAllowed": false,
     "family": "horizontal",
     "tiles": {
-        "sides": "Core:ChestSides",
-        "front": "Core:ChestFront",
-        "topBottom": "Core:ChestTopBottom"
+        "sides": "CoreAssets:ChestSides",
+        "front": "CoreAssets:ChestFront",
+        "topBottom": "CoreAssets:ChestTopBottom"
     },
     "entity": {
         "prefab": "CopperAndBronze:DropChest"
