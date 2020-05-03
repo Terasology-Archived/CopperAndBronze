@@ -13,7 +13,8 @@
         {"id" : "CoreBlocks", "minVersion" : "1.0.0"},
         {"id" : "WorkstationCrafting", "minVersion" : "1.0.0"},
         {"id" : "Smithing", "minVersion" : "1.0.0"},
-        {"id" : "Fences", "minVersion" : "0.1.0"}
+        {"id" : "Fences", "minVersion" : "0.1.0"},
+        {"id" : "Inventory", "minVersion" : "1.1.0"}
     ],
     "isServerSideOnly" : false
 }
