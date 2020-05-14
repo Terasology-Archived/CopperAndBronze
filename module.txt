@@ -8,6 +8,7 @@
         { "id": "AnotherWorld", "minVersion": "0.2.0" },
         { "id": "CoreAdvancedAssets", "minVersion": "1.1.0" },
         { "id": "CoreAssets", "minVersion": "2.0.1" },
+        { "id": "Drops", "minVersion": "1.0.1" },
         { "id": "Fences", "minVersion": "0.1.0" },
         { "id": "GrowingFlora", "minVersion": "0.1.0" },
         { "id": "Inventory", "minVersion": "1.1.0" },
