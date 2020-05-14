@@ -3,11 +3,11 @@
         "processType": "WorkstationCrafting:StandardWoodcraftingProcess"
     },
     "CraftingStationRecipe": {
-        "recipeId": "Building|CoreBlocks:Door",
+        "recipeId": "Building|CoreAdvancedAssets:Door",
 
         "recipeComponents": ["4*WorkstationCrafting:plank", "1*CopperAndBronze:nail"],
         "recipeTools": ["1*hammer"],
 
-        "itemResult": "1*CoreBlocks:Door"
+        "itemResult": "1*CoreAdvancedAssets:Door"
     }
 }
