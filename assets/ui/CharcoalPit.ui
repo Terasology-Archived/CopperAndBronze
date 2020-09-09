@@ -1,98 +1,98 @@
 {
-    "type": "UICharcoalPit",
-    "skin": "WoodAndStone:CraftingStation",
-    "contents": {
+  "type": "UICharcoalPit",
+  "skin": "WoodAndStone:CraftingStation",
+  "contents": {
+    "type": "relativeLayout",
+    "contents": [
+      {
         "type": "relativeLayout",
         "contents": [
-            {
-                "type": "relativeLayout",
-                "contents": [
-                    {
-                        "type": "ScrollableArea",
-                        "content": {
-                            "type": "InventoryGrid",
-                            "id": "input"
-                        },
-                        "layoutInfo": {
-                            "width": 184,
-                            "height": 112,
-                            "position-left": {
-                                "offset": 22
-                            },
-                            "position-top": {
-                                "offset": 5
-                            }
-                        }
-                    },
-                    {
-                        "type": "UIButton",
-                        "id": "process",
-                        "layoutInfo": {
-                            "width": 100,
-                            "height": 56,
-                            "position-left": {
-                                "offset": 235
-                            },
-                            "position-top": {
-                                "offset": 5
-                            }
-                        }
-                    },
-                    {
-                        "type": "UILoadBar",
-                        "fillTexture": "engine:statusBar",
-                        "id": "burningProgress",
-                        "animate": false,
-                        "layoutInfo": {
-                            "width": 100,
-                            "height": 10,
-                            "position-left": {
-                                "offset": 235
-                            },
-                            "position-top": {
-                                "offset": 66
-                            }
-                        }
-                    },
-                    {
-                        "type": "ScrollableArea",
-                        "content": {
-                            "type": "InventoryGrid",
-                            "id": "output"
-                        },
-                        "layoutInfo": {
-                            "width": 184,
-                            "height": 112,
-                            "position-left": {
-                                "offset": 364
-                            },
-                            "position-top": {
-                                "offset": 5
-                            }
-                        }
-                    },
-                    {
-                        "type": "InventoryGrid",
-                        "id": "player",
-                        "layoutInfo": {
-                            "width": 560,
-                            "height": 168,
-                            "position-left": {
-                                "offset": 5
-                            },
-                            "position-top": {
-                                "offset": 122
-                            }
-                        }
-                    }
-                ],
-                "layoutInfo": {
-                    "width": 570,
-                    "height": 295,
-                    "position-horizontal-center": {},
-                    "position-vertical-center": {}
-                }
+          {
+            "type": "ScrollableArea",
+            "content": {
+              "type": "InventoryGrid",
+              "id": "input"
+            },
+            "layoutInfo": {
+              "width": 184,
+              "height": 112,
+              "position-left": {
+                "offset": 22
+              },
+              "position-top": {
+                "offset": 5
+              }
             }
-        ]
-    }
+          },
+          {
+            "type": "UIButton",
+            "id": "process",
+            "layoutInfo": {
+              "width": 100,
+              "height": 56,
+              "position-left": {
+                "offset": 235
+              },
+              "position-top": {
+                "offset": 5
+              }
+            }
+          },
+          {
+            "type": "UILoadBar",
+            "fillTexture": "engine:statusBar",
+            "id": "burningProgress",
+            "animate": false,
+            "layoutInfo": {
+              "width": 100,
+              "height": 10,
+              "position-left": {
+                "offset": 235
+              },
+              "position-top": {
+                "offset": 66
+              }
+            }
+          },
+          {
+            "type": "ScrollableArea",
+            "content": {
+              "type": "InventoryGrid",
+              "id": "output"
+            },
+            "layoutInfo": {
+              "width": 184,
+              "height": 112,
+              "position-left": {
+                "offset": 364
+              },
+              "position-top": {
+                "offset": 5
+              }
+            }
+          },
+          {
+            "type": "InventoryGrid",
+            "id": "player",
+            "layoutInfo": {
+              "width": 560,
+              "height": 168,
+              "position-left": {
+                "offset": 5
+              },
+              "position-top": {
+                "offset": 122
+              }
+            }
+          }
+        ],
+        "layoutInfo": {
+          "width": 570,
+          "height": 295,
+          "position-horizontal-center": {},
+          "position-vertical-center": {}
+        }
+      }
+    ]
+  }
 }
