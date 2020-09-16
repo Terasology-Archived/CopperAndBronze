@@ -1,6 +1,6 @@
 // Copyright 2020 The Terasology Foundation
 // SPDX-License-Identifier: Apache-2.0
-package org.terasology.cab.generator;
+package org.terasology.cooperandbronze.generator;
 
 import org.terasology.anotherWorld.decorator.ore.OreDefinition;
 import org.terasology.anotherWorld.decorator.structure.PocketStructureDefinition;
@@ -11,16 +11,17 @@ import org.terasology.engine.world.block.BlockManager;
 import org.terasology.engine.world.generator.plugin.RegisterPlugin;
 
 @RegisterPlugin
-public class CoalGeneration extends PocketStructureDefinition implements OreDefinition {
-    public CoalGeneration() {
-        super(new UniformPocketBlockProvider(CoreRegistry.get(BlockManager.class).getBlock("Smithing:CoalOre")),
-                new PDist(0.9f, 0.15f), new PDist(4f, 1f), new PDist(2f, 1f), new PDist(1800f, 500f), new PDist(0f,
+public class NativeTinGeneration extends PocketStructureDefinition implements OreDefinition {
+    public NativeTinGeneration() {
+        super(new UniformPocketBlockProvider(CoreRegistry.get(BlockManager.class).getBlock("CopperAndBronze:NativeTin"
+                )),
+                new PDist(0.2f, 0.08f), new PDist(3f, 1f), new PDist(2f, 0.5f), new PDist(1700f, 200f), new PDist(0f,
                         0.35f),
                 new PDist(1f, 0f), new PDist(0.7f, 0.1f), new PDist(0.2f, 0f), new PDist(0f, 0f));
     }
 
     @Override
     public String getOreId() {
-        return "Smithing:CoalOre";
+        return "CopperAndBronze:NativeTin";
     }
 }
